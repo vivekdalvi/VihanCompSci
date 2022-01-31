@@ -1093,7 +1093,7 @@ public class DrawingPanel extends FileFilter implements ActionListener, MouseMot
         private BufferedImage image1;
         private BufferedImage image2;
         private String image1name;
-        private String image2name;
+        public String image2name;
         private int numDiffPixels;
         private int opacity = 50;
         private String label1Text = "Expected";
@@ -1378,6 +1378,8 @@ public class DrawingPanel extends FileFilter implements ActionListener, MouseMot
         // loads image 2 from the given filename
         public void setImage2(String filename) throws IOException {
             image2name = new File(filename).getName();
+            String test = image2name;
+            test.concat("test");
             if (filename.startsWith("http")) {
                 setImage2(ImageIO.read(new URL(filename)));
             } else {
@@ -2521,30 +2523,30 @@ public class DrawingPanel extends FileFilter implements ActionListener, MouseMot
                     ++yCur;
                 else
                     switch (curPass) {
-                    case 0:
-                        yCur += 8;
-                        if (yCur >= imgH) {
-                            ++curPass;
-                            yCur = 4;
-                        }
-                        break;
-                    case 1:
-                        yCur += 8;
-                        if (yCur >= imgH) {
-                            ++curPass;
-                            yCur = 2;
-                        }
-                        break;
-                    case 2:
-                        yCur += 4;
-                        if (yCur >= imgH) {
-                            ++curPass;
-                            yCur = 1;
-                        }
-                        break;
-                    case 3:
-                        yCur += 2;
-                        break;
+                        case 0:
+                            yCur += 8;
+                            if (yCur >= imgH) {
+                                ++curPass;
+                                yCur = 4;
+                            }
+                            break;
+                        case 1:
+                            yCur += 8;
+                            if (yCur >= imgH) {
+                                ++curPass;
+                                yCur = 2;
+                            }
+                            break;
+                        case 2:
+                            yCur += 4;
+                            if (yCur >= imgH) {
+                                ++curPass;
+                                yCur = 1;
+                            }
+                            break;
+                        case 3:
+                            yCur += 2;
+                            break;
                     }
             }
         }

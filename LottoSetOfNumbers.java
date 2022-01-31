@@ -8,8 +8,6 @@
 import java.util.Arrays;
 import java.util.Random;
 
-import javax.sound.sampled.ReverbType;
-
 public class LottoSetOfNumbers {
     public static void main(String[] args) {
         Random gen = new Random();

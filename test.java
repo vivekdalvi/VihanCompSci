@@ -9,7 +9,7 @@ public class test {
         // System.out.println(mystery(82, 19));
         // 5System.out.println(mystery(2348, 239));
         // Scanner console = new Scanner(System.in);
-        int ret = tester(25);
+        // int ret = tester(25);
 
         // test(console);
     }
@@ -30,7 +30,7 @@ public class test {
         return z;
     }
 
-    public static int test(Scanner console) {
+    public static int test1(Scanner console) {
         int prev = 0;
         int count = 0;
         int next = console.nextInt();

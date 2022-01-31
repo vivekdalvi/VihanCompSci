@@ -46,7 +46,7 @@ public class undouble {
          */
     }
 
-    public static String undouble(String strdouble) {
+    public static String undouble1(String strdouble) {
 
         if (strdouble.length() == 0) {
             return strdouble;
