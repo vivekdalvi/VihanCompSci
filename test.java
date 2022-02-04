@@ -12,6 +12,20 @@ public class test {
         // int ret = tester(25);
 
         // test(console);
+
+        Person vihan = new Person();
+        vihan.SetName("Vihan");
+        vihan.SetAge(0);
+        printPerson(vihan);
+
+        Person tanvi = new Person("Tanvi", 18);
+        printPerson(tanvi);
+
+    }
+
+    public static void printPerson(Person p) {
+        System.out.println(p.GetName());
+        System.out.println(p.GetAge());
     }
 
     public static int tester(int x) {
