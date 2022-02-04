@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+//test
 
 public class CheckPassword {
     public static void main(String[] args) {
@@ -9,12 +9,11 @@ public class CheckPassword {
         String pwd = "Vihan123";
         int count = 0;
 
-        while(pwd.equals(realpassword) && count != 3)
-        {
+        while (pwd.equals(realpassword) && count != 3) {
             System.out.print("Please enter your pwd: ");
             pwd = kbReader.nextLine();
             count++;
-       }
-        kbReader.close();             
+        }
+        kbReader.close();
     }
 }
