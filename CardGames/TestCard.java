@@ -1,7 +1,7 @@
 /*
  * TestCard.java
- * by w p osborne
- * 2/11/2022
+ * by Vihan Dalvi
+ * 2/13/2022
  * Period 1
  */
 package CardGames;
@@ -23,6 +23,8 @@ public class TestCard {
                 int randomnumber = gen.nextInt(51) + 1;
                 counter++;
                 // checks if value exists in card already
+                // if match is found, then numberexists is set to true
+                // so that while loop can generate new value
                 for (int j = 0; j < i; j++) {
                     if (stack[j].getIndex() == randomnumber) {
                         numberexists = true;
