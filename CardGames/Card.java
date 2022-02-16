@@ -6,7 +6,7 @@
  */
 package CardGames;
 
-public class Card {
+public class Card implements Comparable<Card> {
     // instance variable
     private int index;
 
@@ -44,4 +44,10 @@ public class Card {
         str += " of " + getSuit();
         return str;
     }
+
+    // implementing comparable interface
+    public int compareTo(Card other) {
+        return this.index - other.getIndex();
+    }
+
 }
