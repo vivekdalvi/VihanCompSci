@@ -1,8 +1,8 @@
 /*
  * Hand.java
- * <your name>
- * <date>
- * <period>
+ * Vihan Dalvi
+ * 02/27/2022
+ * Period 1
  */
 
 // delete next line if using jGrasp. Else, modify to reflect the correct package.
