@@ -19,7 +19,7 @@ public class Bird extends Critter {
     // constructor
 
     public Bird() {
-        turnNumber = 0;
+        turnNumber = -1;
     }
 
     public Color getColor() {

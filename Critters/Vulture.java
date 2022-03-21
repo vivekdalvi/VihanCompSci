@@ -18,17 +18,22 @@ public class Vulture extends Bird {
         hasFought = false;
     }
 
+    public Attack fight(String opponent) {
+        hasFought = true;
+        if (opponent.equals("%")) {
+            return Attack.ROAR;
+        }
+        return Attack.POUNCE;
+    }
+
     public Color getColor() {
         return Color.BLACK;
     }
 
     public boolean eat() {
-        if (isHungry == true) {
+        if (isHungry == true | (isHungry == false && hasFought == true)) {
             isHungry = false;
-            return true;
-        }
-        if (isHungry == false && hasFought == true) {
-            isHungry = true;
+            hasFought = false;
             return true;
         }
         return false;
