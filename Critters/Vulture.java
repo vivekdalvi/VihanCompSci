@@ -1,5 +1,5 @@
 
-/* Vihan Dalvi
+/* Vihan Dalvi          
    AP CS P1
    Vulture Class
 */
@@ -16,18 +16,16 @@ public class Vulture extends Bird {
     public Vulture() {
         isHungry = true;
         hasFought = false;
-    }
 
-    public Attack fight(String opponent) {
-        hasFought = true;
-        if (opponent.equals("%")) {
-            return Attack.ROAR;
-        }
-        return Attack.POUNCE;
     }
 
     public Color getColor() {
         return Color.BLACK;
+    }
+
+    public Attack fight(String opponent) {
+        hasFought = true;
+        return super.fight(opponent);
     }
 
     public boolean eat() {

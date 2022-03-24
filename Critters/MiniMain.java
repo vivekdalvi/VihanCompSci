@@ -25,13 +25,16 @@ public class MiniMain {
 
 	// Small, very simple test (Ant only).
 	public static void test1() {
-		System.out.println("Test 1 (Vulture):");
+		System.out.println("Test 1 (Hippo):");
 
 		// create an Ant and move it 10 times
-		Vulture animal = new Vulture();
+		Hippo animal = new Hippo(7);
 		System.out.print(animal.toString() + " ");
 
-		for (int i = 1; i <= 12; i++) {
+		Vulture v = new Vulture();
+		v.fight("%");
+
+		for (int i = 1; i <= 8; i++) {
 			Critter.Direction move = animal.getMove();
 			System.out.print(move + " " + animal.toString() + " ");
 		}

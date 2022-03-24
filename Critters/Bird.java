@@ -23,7 +23,7 @@ public class Bird extends Critter {
     }
 
     public Color getColor() {
-        return Color.blue;
+        return Color.BLUE;
     }
 
     public Attack fight(String opponent) {
