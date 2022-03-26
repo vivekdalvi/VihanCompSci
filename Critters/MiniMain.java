@@ -28,11 +28,8 @@ public class MiniMain {
 		System.out.println("Test 1 (Hippo):");
 
 		// create an Ant and move it 10 times
-		Hippo animal = new Hippo(7);
+		Husky animal = new Husky();
 		System.out.print(animal.toString() + " ");
-
-		Vulture v = new Vulture();
-		v.fight("%");
 
 		for (int i = 1; i <= 8; i++) {
 			Critter.Direction move = animal.getMove();

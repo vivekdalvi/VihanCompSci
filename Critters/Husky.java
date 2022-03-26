@@ -1,3 +1,8 @@
+/* Vihan Dalvi          
+   AP CS P1
+   Ant Class
+*/
+
 package Critters;
 
 import java.util.Random;
@@ -6,17 +11,25 @@ import java.time.*;
 
 public class Husky extends Critter {
 
+    private Direction[][] movement = {
+            { Direction.NORTH, Direction.NORTH, Direction.NORTH, Direction.SOUTH, Direction.SOUTH, Direction.SOUTH },
+            { Direction.EAST, Direction.EAST, Direction.EAST, Direction.WEST, Direction.WEST, Direction.WEST } };
+
     private Random gen;
     private int randomnum;
     private Breed breed;
     private int hungerPieces;
+    private int dirrow;
+    private int turnNumber;
 
     public Husky() {
         gen = new Random();
         randomnum = gen.nextInt(3);
+        turnNumber = -1;
+        dirrow = gen.nextInt(2);
         if (randomnum == 0) {
             breed = Breed.ALASKAN;
-            hungerPieces = 5;
+            hungerPieces = 3;
         }
         if (randomnum == 1) {
             breed = Breed.SIBERIAN;
@@ -24,6 +37,7 @@ public class Husky extends Critter {
         }
         if (randomnum == 2) {
             breed = Breed.SAMOYED;
+            hungerPieces = 7;
         }
     }
 
@@ -42,7 +56,7 @@ public class Husky extends Critter {
     public boolean eat() {
         LocalTime time = LocalTime.now();
         if (breed == Breed.ALASKAN) {
-            // hungry between noon-1PM and 7-8 PM
+            // hungry between noon-12:59PM and 7-7:59 PM
             if ((time.getHour() == 12 || time.getHour() == 19) && (hungerPieces > 0)) {
                 hungerPieces--;
                 return true;
@@ -75,24 +89,36 @@ public class Husky extends Critter {
 
     // all huskies walk around the house so i chose behavior that is same as
     public Direction getMove() {
-        if (breed == Breed.ALASKAN) {
-            return Color.GRAY;
 
+        if (breed == Breed.ALASKAN) {
+            turnNumber++;
+            if (turnNumber > 5) {
+                turnNumber = 0;
+            }
+            return movement[dirrow][turnNumber];
         } else if (breed == Breed.SAMOYED) {
-            return Color.WHITE;
+            turnNumber = turnNumber + 2;
+            if (turnNumber > 5) {
+                turnNumber = 0;
+            }
+            return movement[dirrow][turnNumber];
         } else {
-            return Color.BLACK;
+            turnNumber = turnNumber + 3;
+            if (turnNumber > 5) {
+                turnNumber = 0;
+            }
+            return movement[dirrow][turnNumber];
         }
     }
 
     public String toString() {
         if (breed == Breed.ALASKAN) {
-            return Color.GRAY;
+            return "H";
 
         } else if (breed == Breed.SAMOYED) {
-            return Color.WHITE;
+            return "H";
         } else {
-            return Color.BLACK;
+            return "H";
         }
     }
 
