@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class test {
@@ -12,6 +13,37 @@ public class test {
         // int ret = tester(25);
 
         // test(console);
+        Employee e = new Employee();
+        // System.out.println(e);
+        // Employee[] e = { new Secretary(), new Employee() };
+
+        Secretary s = new Secretary();
+
+        ArrayList<Employee> listofemploye = new ArrayList<Employee>();
+        ArrayList<String> listofnames = new ArrayList<String>();
+        ArrayList<Integer> listofage = new ArrayList<Integer>();
+        listofnames.add("Vivek");
+        listofnames.add(0, "Vihan");
+
+        listofnames.get(0).startsWith("V");
+
+        listofemploye.add(s);
+        listofemploye.add(0, e);
+
+        Employee e = s;
+        System.out.println(e.getSalary());
+        System.out.println(s.getSalary());
+
+        testconstructor ts1 = new testconstructor(15, true);
+        System.out.println(ts1.getInitial());
+
+        System.out.println(ts1.getIsItTrue());
+        System.out.println(ts1.getObjectCount());
+        testconstructor ts2 = new testconstructor(20, false);
+        System.out.println(ts2.getInitial());
+        System.out.println(ts2.getIsItTrue());
+        System.out.println(ts2.getObjectCount());
+        testconstructor.teststatic();
 
         Person vihan = new Person();
         vihan.SetName("Vihan");
