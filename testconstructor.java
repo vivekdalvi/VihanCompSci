@@ -1,4 +1,3 @@
-import javax.swing.text.html.InlineView;
 
 public class testconstructor {
     private int intial;

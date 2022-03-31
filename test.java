@@ -21,7 +21,7 @@ public class test {
 
         ArrayList<Employee> listofemploye = new ArrayList<Employee>();
         ArrayList<String> listofnames = new ArrayList<String>();
-        ArrayList<Integer> listofage = new ArrayList<Integer>();
+        // ArrayList<Integer> listofage = new ArrayList<Integer>();
         listofnames.add("Vivek");
         listofnames.add(0, "Vihan");
 
@@ -30,7 +30,7 @@ public class test {
         listofemploye.add(s);
         listofemploye.add(0, e);
 
-        Employee e = s;
+        // Employee e = s;
         System.out.println(e.getSalary());
         System.out.println(s.getSalary());
 

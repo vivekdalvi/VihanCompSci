@@ -1,4 +1,3 @@
-import javax.naming.event.NamespaceChangeListener;
 
 public class Secretary extends Employee {
     boolean cantakedict;

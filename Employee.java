@@ -19,11 +19,11 @@ public class Employee {
         return hours;
     }
 
-    private int getSalary() {
+    public int getSalary() {
         return salary;
     }
 
-    protected String getFormColor() {
+    public String getFormColor() {
         return formcolor;
     }
 
