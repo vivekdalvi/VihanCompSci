@@ -1,6 +1,6 @@
 package OsborneAirlines;
 
-public class Passenger {
+public class Passenger extends UniqueObjectwithId {
     String _firstname;
     String _lastname;
 

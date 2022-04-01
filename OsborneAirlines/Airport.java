@@ -1,13 +1,11 @@
 package OsborneAirlines;
 
-import java.util.TimeZone;
+import java.time.*;
 
-public class Airport {
+public class Airport extends UniqueObjectwithId {
     private String _name;
     private String _city;
     private String _state;
-    // need to use Java.util.TimeZone to calculate GMT offset
-    private TimeZone _gmtoffset;
     private String _timezoneid;
 
     public Airport(String name, String city, String state, String timezoneid) {
@@ -15,8 +13,20 @@ public class Airport {
         _city = city;
         _state = state;
         _timezoneid = timezoneid;
-        _gmtoffset = TimeZone.getTimeZone(_timezoneid);
-        System.out.println(_gmtoffset.getRawOffset() / 3600000);
+        String testtime = "2022-03-31T00:00";
+
+        LocalDateTime t = LocalDateTime.parse(testtime);
+        ZonedDateTime tz = ZonedDateTime.of(t, ZoneId.of("UTC"));
+
+        ZoneId z = ZoneId.of(_timezoneid);
+        ZonedDateTime z1 = tz.withZoneSameInstant(z);
+
+        ZoneId y = ZoneId.of("Asia/Calcutta");
+        ZonedDateTime y1 = tz.withZoneSameInstant(y);
+
+        System.out.println(t);
+        System.out.println(z1);
+        System.out.println(y1);
     }
 
     public String getName() {
@@ -29,10 +39,6 @@ public class Airport {
 
     public String getState() {
         return _state;
-    }
-
-    public TimeZone getGMTOffser() {
-        return _gmtoffset;
     }
 
     public void setName(String name) {

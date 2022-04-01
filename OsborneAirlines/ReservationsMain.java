@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.TimeZone;
 
 public class ReservationsMain {
     final static String airportfilepath1 = ".\\OsborneAirlines\\airports.txt";

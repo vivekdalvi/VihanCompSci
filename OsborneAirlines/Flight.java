@@ -1,12 +1,22 @@
 package OsborneAirlines;
 
-public class Flight {
-    Airport _departureairport;
-    Airport _arrivalairport;
-    FlightDate _departuredate;
-    FlightDate _arrivaldate;
-    String _flightnumber;
-    int _capacity;
+public class Flight extends UniqueObjectwithId {
+    private Airport _departureairport;
+    private Airport _arrivalairport;
+    private FlightDate _departuredate;
+    private FlightDate _arrivaldate;
+    private String _flightnumber;
+    private int _capacity;
+
+    public Flight(Airport departureairport, Airport arrivalairport, FlightDate departuredate, FlightDate arrivaldate,
+            String flightnumber, int capacity) {
+        _departureairport = departureairport;
+        _arrivalairport = arrivalairport;
+        _departuredate = departuredate;
+        _arrivaldate = arrivaldate;
+        _flightnumber = flightnumber;
+        _capacity = capacity;
+    }
 
     public Airport getDepartureAirport() {
         return _departureairport;

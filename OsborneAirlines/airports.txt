@@ -1,4 +1,4 @@
 SEATAC,Seattle,Washington,America/Los_Angeles
-JFK,New York,New York,American/New_York
+JFK,New York,New York,America/New_York
 SFO,San Francisco,California,America/Los_Angeles
 LAX,Los Angeles,California,America/Los_Angeles
