@@ -1,3 +1,4 @@
+//Name, City, State, Timezone
 SEATAC,Seattle,Washington,America/Los_Angeles
 JFK,New York,New York,America/New_York
 SFO,San Francisco,California,America/Los_Angeles
