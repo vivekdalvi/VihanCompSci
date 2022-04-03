@@ -1,8 +1,9 @@
 package OsborneAirlines;
 
 import java.time.*;
+import java.util.TimeZone;
 
-public class Airport extends UniqueObjectwithId {
+public class Airport {
     private String _name;
     private String _city;
     private String _state;
@@ -24,9 +25,9 @@ public class Airport extends UniqueObjectwithId {
         ZoneId y = ZoneId.of("Asia/Calcutta");
         ZonedDateTime y1 = tz.withZoneSameInstant(y);
 
-        System.out.println(t);
-        System.out.println(z1);
-        System.out.println(y1);
+        // System.out.println(t);
+        // System.out.println(z1);
+        // System.out.println(y1);
     }
 
     public String getName() {
@@ -35,6 +36,10 @@ public class Airport extends UniqueObjectwithId {
 
     public String getCity() {
         return _city;
+    }
+
+    public String getTimeZoneId() {
+        return _timezoneid;
     }
 
     public String getState() {
@@ -51,5 +56,14 @@ public class Airport extends UniqueObjectwithId {
 
     public void setState(String state) {
         _state = state;
+    }
+
+    public String toString() {
+        String airportstring = "";
+        // Name, City, State, Timezone
+        airportstring += "\tAirport Name: " + _name + "\n";
+        airportstring += "\tirport City: " + _city + ", " + _state + "\n";
+        airportstring += "\tAirport TimeZone: " + TimeZone.getTimeZone(_timezoneid).getDisplayName();
+        return airportstring;
     }
 }

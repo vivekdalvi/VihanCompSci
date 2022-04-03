@@ -1,16 +1,21 @@
 package OsborneAirlines;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class FlightDate {
-    Date _gmtdeparturetime;
-    Date _gmtarrivaltime;
+    LocalDateTime _gmtdeparturetime;
+    LocalDateTime _gmtarrivaltime;
 
-    public Date getDepartureGMT() {
+    public FlightDate(String arrivaltime, String departuretime) {
+        _gmtarrivaltime = LocalDateTime.parse(arrivaltime);
+        _gmtdeparturetime = LocalDateTime.parse(departuretime);
+    }
+
+    public LocalDateTime getDepartureGMT() {
         return _gmtdeparturetime;
     }
 
-    public Date getArrivalGMT() {
+    public LocalDateTime getArrivalGMT() {
         return _gmtarrivaltime;
     }
 
