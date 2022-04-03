@@ -162,6 +162,7 @@ public class ReservationsMain {
             }
             if (input == 1) {
                 // print reservation by alhpabetical order
+                // dont understand this
             } else if (input == 2) {
                 // search by reservation number
                 System.out.print(TextColor.ANSI_RED + "\nEnter Reservation Number: " + TextColor.ANSI_RESET);
@@ -175,7 +176,17 @@ public class ReservationsMain {
                 }
             } else if (input == 3) {
                 // search by customer name
-
+                System.out.println("\nDetails for Passenger ");
+                System.out.print(TextColor.ANSI_RED + "Enter First Name: " + TextColor.ANSI_RESET);
+                String firstname = kbreader.nextLine();
+                System.out.print(TextColor.ANSI_RED + "Enter Last Name: " + TextColor.ANSI_RESET);
+                String lastname = kbreader.nextLine();
+                ArrayList<Reservation> customerreservations = FindReservationForPassenger(firstname, lastname);
+                System.out.print(TextColor.ANSI_YELLOW);
+                for (Reservation reservation : customerreservations) {
+                    System.out.println(reservation + "\n");
+                }
+                System.out.print(TextColor.ANSI_RESET);
             } else if (input == 4) {
                 // create new reservation
                 System.out.print(TextColor.ANSI_RED + "\nEnter Flight Number: " + TextColor.ANSI_RESET);
@@ -183,7 +194,7 @@ public class ReservationsMain {
                 if (f != null) {
                     int customerinput = 9;
                     ArrayList<Passenger> passengers = new ArrayList<Passenger>();
-                    Reservation r = new Reservation(_reservations.size(), f, passengers);
+                    Reservation r = new Reservation(_reservations.size() + 1, f, passengers);
                     while (customerinput != 0) {
                         System.out.println("\nDetails for Passenger " + (passengers.size() + 1));
                         System.out.print(TextColor.ANSI_RED + "Enter First Name: " + TextColor.ANSI_RESET);
@@ -203,10 +214,21 @@ public class ReservationsMain {
                             customerinput = Integer.parseInt(kbreader.nextLine());
                         }
                     }
+                    _reservations.add(r);
                 }
 
             } else if (input == 5) {
-                // delete reservation
+                System.out.print(TextColor.ANSI_RED + "\nEnter Reservation Number: " + TextColor.ANSI_RESET);
+                if (kbreader.hasNextInt()) {
+                    Reservation r = FindReservation(Integer.parseInt(kbreader.nextLine()));
+                    if (r != null) {
+                        _reservations.remove(r);
+                        System.out.println(TextColor.ANSI_RED + "Below Reservation is Removed....");
+                        System.out.println(r + TextColor.ANSI_RESET);
+                    } else {
+                        System.out.println(TextColor.ANSI_RED + "Reservation Does not exist" + TextColor.ANSI_RESET);
+                    }
+                }
 
             } else {
                 input = 0;
@@ -257,6 +279,19 @@ public class ReservationsMain {
             }
         }
         return null;
+    }
+
+    private static ArrayList<Reservation> FindReservationForPassenger(String firstname, String lastname) {
+        ArrayList<Reservation> reservationsforcustomer = new ArrayList<Reservation>();
+        for (Reservation r : _reservations) {
+            Passenger p = r.getPassengerList().stream()
+                    .filter(passenger -> (firstname + " " + lastname).equals(passenger.getName())).findAny()
+                    .orElse(null);
+            if (p != null) {
+                reservationsforcustomer.add(r);
+            }
+        }
+        return reservationsforcustomer;
     }
 
     private static ArrayList<Passenger> FindPassengersForFlight(String flightnumber) {
