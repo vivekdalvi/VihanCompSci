@@ -96,7 +96,7 @@ public class ReservationsMain {
     private static void PrintMenu(Scanner kbreader) {
         int input = 7;
         do {
-            System.out.println(TextColor.ANSI_GREEN + "\n\nMAIN > PRINT:");
+            System.out.println(TextColor.ANSI_RED + "\n\nMAIN > PRINT:" + TextColor.ANSI_GREEN);
             System.out.println("1: Reservation List ");
             System.out.println("2: Flight List");
             System.out.println("3: Airports");
@@ -116,9 +116,23 @@ public class ReservationsMain {
             } else if (input == 3) {
                 PrintList(_airports);
             } else if (input == 4) {
-                // print passenger list
+                for (Reservation reservation : _reservations) {
+                    System.out.println(TextColor.ANSI_YELLOW + "Passenger List for "
+                            + reservation.getFlight().getFlightNumber() + TextColor.ANSI_RESET + "\n");
+                    PrintList(reservation.getPassengerList());
+                }
             } else if (input == 5) {
-                // print passtners for a flight
+                System.out.print(TextColor.ANSI_RED + "\nEnter Flight Number: " + TextColor.ANSI_RESET);
+                Flight f = FindFlight(kbreader.nextLine());
+                if (f != null) {
+                    System.out.println(
+                            TextColor.ANSI_YELLOW + "Passengers for " + f.getFlightNumber() + TextColor.ANSI_RESET);
+                    ArrayList<Passenger> passengers = FindPassengersForFlight(f.getFlightNumber());
+                    PrintList(passengers);
+                } else {
+                    System.out.println(TextColor.ANSI_RED + "Flight Does not exist" + TextColor.ANSI_RESET);
+                }
+
             } else {
                 input = 0;
             }
@@ -126,20 +140,79 @@ public class ReservationsMain {
         // MainMenu(kbreader);
     }
 
-    private static void PrintList(Iterable list) {
-        System.out.println(TextColor.ANSI_YELLOW + "\n\n");
-        for (Object object : list) {
-            System.out.println(object + "\n");
-        }
-        System.out.println("End of List" + TextColor.ANSI_RESET);
-    }
-
     private static void SaveMenu(Scanner kbreader) {
         MainMenu(kbreader);
     }
 
     private static void ReservationMenu(Scanner kbreader) {
-        MainMenu(kbreader);
+        int input = 7;
+        do {
+            System.out.println(TextColor.ANSI_RED + "\n\nMAIN > RESERVATION:" + TextColor.ANSI_GREEN);
+            System.out.println("1: Reservations by Alphabetical Order");
+            System.out.println("2: Search by Reservation Number");
+            System.out.println("3: Search by Customer Name");
+            System.out.println("4: Create New Reservation");
+            System.out.println("5: Delete Reservation");
+            System.out.println("ANYTHING ELSE: <-- Go Back to Main Menu");
+            System.out.print("Please Enter Menu Number: " + TextColor.ANSI_RESET);
+            if (kbreader.hasNextInt()) {
+                input = Integer.parseInt(kbreader.nextLine());
+            } else {
+                input = 0;
+            }
+            if (input == 1) {
+                // print reservation by alhpabetical order
+            } else if (input == 2) {
+                // search by reservation number
+                System.out.print(TextColor.ANSI_RED + "\nEnter Reservation Number: " + TextColor.ANSI_RESET);
+                if (kbreader.hasNextInt()) {
+                    Reservation r = FindReservation(Integer.parseInt(kbreader.nextLine()));
+                    if (r != null) {
+                        System.out.println(r);
+                    } else {
+                        System.out.println(TextColor.ANSI_RED + "Reservation Does not exist" + TextColor.ANSI_RESET);
+                    }
+                }
+            } else if (input == 3) {
+                // search by customer name
+
+            } else if (input == 4) {
+                // create new reservation
+                System.out.print(TextColor.ANSI_RED + "\nEnter Flight Number: " + TextColor.ANSI_RESET);
+                Flight f = FindFlight(kbreader.nextLine());
+                if (f != null) {
+                    int customerinput = 9;
+                    ArrayList<Passenger> passengers = new ArrayList<Passenger>();
+                    Reservation r = new Reservation(_reservations.size(), f, passengers);
+                    while (customerinput != 0) {
+                        System.out.println("\nDetails for Passenger " + (passengers.size() + 1));
+                        System.out.print(TextColor.ANSI_RED + "Enter First Name: " + TextColor.ANSI_RESET);
+                        String firstname = kbreader.nextLine();
+                        System.out.print(TextColor.ANSI_RED + "Enter Last Name: " + TextColor.ANSI_RESET);
+                        String lastname = kbreader.nextLine();
+                        Passenger p = FindPassenger(firstname, lastname);
+                        if (p == null) {
+                            r.getPassengerList().add(new Passenger(firstname, lastname));
+                            System.out.println("New Passenger added");
+                        } else {
+                            r.getPassengerList().add(p);
+                            System.out.println("Existing Passenger added");
+                        }
+                        System.out.print("Do you want to add another customer? [yes: 1 /No: 0]");
+                        if (kbreader.hasNextInt()) {
+                            customerinput = Integer.parseInt(kbreader.nextLine());
+                        }
+                    }
+                }
+
+            } else if (input == 5) {
+                // delete reservation
+
+            } else {
+                input = 0;
+            }
+        } while (input != 0);
+
     }
 
     private static void FlightMenu(Scanner kbreader) {
@@ -161,9 +234,47 @@ public class ReservationsMain {
         return a;
     }
 
+    private static Reservation FindReservation(int reservationnumber) {
+        Reservation a = _reservations.stream()
+                .filter(reservation -> reservationnumber == (reservation.getReservationNumber())).findAny()
+                .orElse(null);
+        return a;
+    }
+
     private static Flight FindFlight(String flightnumber) {
         Flight f = _flights.stream().filter(flight -> flightnumber.equals(flight.getFlightNumber())).findAny()
                 .orElse(null);
         return f;
+    }
+
+    private static Passenger FindPassenger(String firstname, String lastname) {
+        for (Reservation r : _reservations) {
+            Passenger p = r.getPassengerList().stream()
+                    .filter(passenger -> (firstname + " " + lastname).equals(passenger.getName())).findAny()
+                    .orElse(null);
+            if (p != null) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    private static ArrayList<Passenger> FindPassengersForFlight(String flightnumber) {
+        Reservation r = _reservations.stream()
+                .filter(reservation -> flightnumber.equals(reservation.getFlight().getFlightNumber())).findAny()
+                .orElse(null);
+        if (r != null) {
+            return r.getPassengerList();
+        } else {
+            return null;
+        }
+    }
+
+    private static void PrintList(Iterable list) {
+        System.out.println(TextColor.ANSI_YELLOW);
+        for (Object object : list) {
+            System.out.println(object + "\n");
+        }
+        System.out.print(TextColor.ANSI_RESET);
     }
 }

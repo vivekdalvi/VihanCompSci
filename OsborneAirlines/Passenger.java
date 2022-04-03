@@ -13,4 +13,8 @@ public class Passenger {
         return _firstname + " " + _lastname;
     }
 
+    public String toString() {
+        return _firstname + " " + _lastname;
+    }
+
 }
