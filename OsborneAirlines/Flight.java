@@ -43,47 +43,52 @@ public class Flight {
         ZonedDateTime localarrivaltime = zarrivaltime.withZoneSameInstant(arrivalzone);
 
         String arrivalstring = "";
-        arrivalstring += "Arriving at local time:"
+        arrivalstring += "Arriving at local time: "
+                + TextColor.ANSI_BLUE
                 + localarrivaltime.getDayOfMonth()
                 + " " + localarrivaltime.getMonth()
                 + " " + localarrivaltime.getYear()
-                + "at " + localarrivaltime.getHour()
-                + ":" + localarrivaltime.getMinute();
+                + " at " + localarrivaltime.getHour()
+                + ":" + localarrivaltime.getMinute()
+                + TextColor.ANSI_RESET;
 
         return arrivalstring;
 
     }
 
     public String GetLocalDepartureDate() {
-        LocalDateTime arrivaltime = LocalDateTime.parse(_flightdate.getArrivalGMT().toString());
-        ZonedDateTime zarrivaltime = ZonedDateTime.of(arrivaltime, ZoneId.of("UTC"));
+        LocalDateTime departuretime = LocalDateTime.parse(_flightdate.getDepartureGMT().toString());
+        ZonedDateTime zdeparturetime = ZonedDateTime.of(departuretime, ZoneId.of("UTC"));
 
-        ZoneId arrivalzone = ZoneId.of(_arrivalairport.getTimeZoneId());
-        ZonedDateTime localarrivaltime = zarrivaltime.withZoneSameInstant(arrivalzone);
+        ZoneId departurezone = ZoneId.of(_departureairport.getTimeZoneId());
+        ZonedDateTime localdeparturetime = zdeparturetime.withZoneSameInstant(departurezone);
 
-        String arrivalstring = "";
-        arrivalstring += "Arriving at local time:"
-                + localarrivaltime.getDayOfMonth()
-                + " " + localarrivaltime.getMonth()
-                + " " + localarrivaltime.getYear()
-                + "at " + localarrivaltime.getHour()
-                + ":" + localarrivaltime.getMinute();
+        String departurestring = "";
+        departurestring += "Departing at local time: "
+                + TextColor.ANSI_BLUE
+                + localdeparturetime.getDayOfMonth()
+                + " " + localdeparturetime.getMonth()
+                + " " + localdeparturetime.getYear()
+                + " at " + localdeparturetime.getHour()
+                + ":" + localdeparturetime.getMinute()
+                + TextColor.ANSI_RESET;
 
-        return arrivalstring;
+        return departurestring;
 
     }
 
     public String toString() {
         String flightstring = "";
         // Name, City, State, Timezone
-        flightstring += "Flight Number: " + _flightnumber + "\n";
-        flightstring += "Flight Capacity: " + _capacity + "\n";
-        flightstring += "ARRIVAL: " + "\n";
-        flightstring += _arrivalairport.toString() + "\n\t";
-        flightstring += GetLocalArrivalDate() + "\n";
+        flightstring += "Flight Number: " + TextColor.ANSI_BLUE + _flightnumber + "\n" + TextColor.ANSI_RESET;
+        flightstring += "Flight Capacity: " + TextColor.ANSI_BLUE + _capacity + "\n" + TextColor.ANSI_RESET;
         flightstring += "DEPARTURE: " + "\n";
         flightstring += _departureairport.toString() + "\n\t";
-        flightstring += GetLocalDepartureDate();
+        flightstring += GetLocalDepartureDate() + "\n";
+        flightstring += "ARRIVAL: " + "\n";
+        flightstring += _arrivalairport.toString() + "\n\t";
+        flightstring += GetLocalArrivalDate();
+
         return flightstring;
     }
 

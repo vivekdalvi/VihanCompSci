@@ -13,7 +13,11 @@ public class Reservation {
         _flight = flight;
         for (String string : passengerlist) {
             String[] namesplit = string.split(" ", 2);
-            Passenger p = new Passenger(namesplit[1], namesplit[0]);
+            Passenger p = new Passenger(
+                    // first name
+                    namesplit[1].toUpperCase(),
+                    // last name
+                    namesplit[0].toUpperCase());
             _passengerlist.add(p);
         }
     }
@@ -40,7 +44,8 @@ public class Reservation {
         // reservation number, flightnumber, passenger list
 
         String reservationstring = "";
-        reservationstring += "Reservation Number: " + _reservationnumber + "\n"
+        reservationstring += "Reservation Number: " + TextColor.ANSI_BLUE + _reservationnumber + "\n"
+                + TextColor.ANSI_RESET
                 + _flight.toString() + "\n"
                 + "Passenger List: " + "\n\t"
                 + _passengerlist.toString();

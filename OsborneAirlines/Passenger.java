@@ -14,7 +14,7 @@ public class Passenger {
     }
 
     public String toString() {
-        return _firstname + " " + _lastname;
+        return TextColor.ANSI_BLUE + _firstname + " " + _lastname + TextColor.ANSI_RESET;
     }
 
 }

@@ -1,6 +1,5 @@
 package OsborneAirlines;
 
-import java.time.*;
 import java.util.TimeZone;
 
 public class Airport {
@@ -14,20 +13,6 @@ public class Airport {
         _city = city;
         _state = state;
         _timezoneid = timezoneid;
-        String testtime = "2022-03-31T00:00";
-
-        LocalDateTime t = LocalDateTime.parse(testtime);
-        ZonedDateTime tz = ZonedDateTime.of(t, ZoneId.of("UTC"));
-
-        ZoneId z = ZoneId.of(_timezoneid);
-        ZonedDateTime z1 = tz.withZoneSameInstant(z);
-
-        ZoneId y = ZoneId.of("Asia/Calcutta");
-        ZonedDateTime y1 = tz.withZoneSameInstant(y);
-
-        // System.out.println(t);
-        // System.out.println(z1);
-        // System.out.println(y1);
     }
 
     public String getName() {
@@ -61,9 +46,10 @@ public class Airport {
     public String toString() {
         String airportstring = "";
         // Name, City, State, Timezone
-        airportstring += "\tAirport Name: " + _name + "\n";
-        airportstring += "\tirport City: " + _city + ", " + _state + "\n";
-        airportstring += "\tAirport TimeZone: " + TimeZone.getTimeZone(_timezoneid).getDisplayName();
+        airportstring += "\tAirport Name: " + TextColor.ANSI_BLUE + _name + TextColor.ANSI_RESET;
+        airportstring += "\tAirport City: " + TextColor.ANSI_BLUE + _city + ", " + _state + TextColor.ANSI_RESET;
+        airportstring += "\t\tAirport TimeZone: " + TextColor.ANSI_BLUE
+                + TimeZone.getTimeZone(_timezoneid).getDisplayName() + TextColor.ANSI_RESET;
         return airportstring;
     }
 }
