@@ -1,0 +1,287 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch CafeWall",
+            "request": "launch",
+            "mainClass": "CafeWall.CafeWall",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch HoldCards",
+            "request": "launch",
+            "mainClass": "CardGames.HoldCards",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch TestCard",
+            "request": "launch",
+            "mainClass": "CardGames.TestCard",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch GameOf21",
+            "request": "launch",
+            "mainClass": "Cards.GameOf21",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch TestHand",
+            "request": "launch",
+            "mainClass": "Cards.TestHand",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch CritterMain",
+            "request": "launch",
+            "mainClass": "Critters.CritterMain",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch MiniMain",
+            "request": "launch",
+            "mainClass": "Critters.MiniMain",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch TestPoint",
+            "request": "launch",
+            "mainClass": "FirstObjects.TestPoint",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch CheckPassword",
+            "request": "launch",
+            "mainClass": "General.CheckPassword",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch Count",
+            "request": "launch",
+            "mainClass": "General.Count",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch CrazySeven",
+            "request": "launch",
+            "mainClass": "General.CrazySeven",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch FRQ_7",
+            "request": "launch",
+            "mainClass": "General.FRQ_7",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch HW3_3Answer",
+            "request": "launch",
+            "mainClass": "General.HW3_3Answer",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch LargestTestScore",
+            "request": "launch",
+            "mainClass": "General.LargestTestScore",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch LearnFileObject",
+            "request": "launch",
+            "mainClass": "General.LearnFileObject",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch LearnRandom",
+            "request": "launch",
+            "mainClass": "General.LearnRandom",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch LearnWhileMenu",
+            "request": "launch",
+            "mainClass": "General.LearnWhileMenu",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch LottoSetOfNumbers",
+            "request": "launch",
+            "mainClass": "General.LottoSetOfNumbers",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch MirrorWOConstant",
+            "request": "launch",
+            "mainClass": "General.MirrorWOConstant",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch MysteryReturn",
+            "request": "launch",
+            "mainClass": "General.MysteryReturn",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch NameGame",
+            "request": "launch",
+            "mainClass": "General.NameGame",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch NameGenerator",
+            "request": "launch",
+            "mainClass": "General.NameGenerator",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch Nestedloop",
+            "request": "launch",
+            "mainClass": "General.Nestedloop",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch Oops3",
+            "request": "launch",
+            "mainClass": "General.Oops3",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch Rocket",
+            "request": "launch",
+            "mainClass": "General.Rocket",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch RollingRockSim",
+            "request": "launch",
+            "mainClass": "General.RollingRockSim",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch RollingRockSimulation",
+            "request": "launch",
+            "mainClass": "General.RollingRockSimulation",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch ScannerMethods",
+            "request": "launch",
+            "mainClass": "General.ScannerMethods",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch StudentInfo",
+            "request": "launch",
+            "mainClass": "General.StudentInfo",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch TestVariable",
+            "request": "launch",
+            "mainClass": "General.TestVariable",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch UxProject",
+            "request": "launch",
+            "mainClass": "General.UxProject",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch excercise210",
+            "request": "launch",
+            "mainClass": "General.excercise210",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch recursion",
+            "request": "launch",
+            "mainClass": "General.recursion",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch test",
+            "request": "launch",
+            "mainClass": "General.test",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch undouble",
+            "request": "launch",
+            "mainClass": "General.undouble",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch TestShape",
+            "request": "launch",
+            "mainClass": "GraphicsInheritance.TestShape",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch ReservationsMain",
+            "request": "launch",
+            "mainClass": "OsborneAirlines.ReservationsMain",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch TestRPS",
+            "request": "launch",
+            "mainClass": "RPSGame.TestRPS",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        },
+        {
+            "type": "java",
+            "name": "Launch test(1)",
+            "request": "launch",
+            "mainClass": "foobar.test",
+            "projectName": "VihanCompSci_7c1b3bfe"
+        }
+    ]
+}

@@ -1,6 +1,6 @@
 package OsborneAirlines;
 
-public class Passenger {
+public class Passenger implements Comparable<Passenger> {
     String _firstname;
     String _lastname;
 
@@ -15,6 +15,10 @@ public class Passenger {
 
     public String toString() {
         return TextColor.ANSI_BLUE + _firstname + " " + _lastname + TextColor.ANSI_RESET;
+    }
+
+    public int compareTo(Passenger passenger) {
+        return this.getName().compareTo(passenger.getName());
     }
 
 }

@@ -2,7 +2,7 @@ package OsborneAirlines;
 
 import java.time.*;
 
-public class Flight {
+public class Flight implements Comparable<Flight> {
     private Airport _departureairport;
     private Airport _arrivalairport;
     private FlightDate _flightdate;
@@ -34,13 +34,26 @@ public class Flight {
         return _capacity;
     }
 
+    public String GetLocalDepartureDate() {
+        ZoneId departurezone = ZoneId.of(_departureairport.getTimeZoneId());
+        ZonedDateTime localdeparturetime = _flightdate.getDepartureGMT().withZoneSameInstant(departurezone);
+
+        String departurestring = "";
+        departurestring += "Departing at local time: "
+                + TextColor.ANSI_BLUE
+                + localdeparturetime.getDayOfMonth()
+                + " " + localdeparturetime.getMonth()
+                + " " + localdeparturetime.getYear()
+                + " at " + localdeparturetime.getHour()
+                + ":" + localdeparturetime.getMinute()
+                + TextColor.ANSI_RESET;
+
+        return departurestring;
+    }
+
     public String GetLocalArrivalDate() {
-
-        LocalDateTime arrivaltime = LocalDateTime.parse(_flightdate.getArrivalGMT().toString());
-        ZonedDateTime zarrivaltime = ZonedDateTime.of(arrivaltime, ZoneId.of("UTC"));
-
         ZoneId arrivalzone = ZoneId.of(_arrivalairport.getTimeZoneId());
-        ZonedDateTime localarrivaltime = zarrivaltime.withZoneSameInstant(arrivalzone);
+        ZonedDateTime localarrivaltime = _flightdate.getArrivalGMT().withZoneSameInstant(arrivalzone);
 
         String arrivalstring = "";
         arrivalstring += "Arriving at local time: "
@@ -56,25 +69,8 @@ public class Flight {
 
     }
 
-    public String GetLocalDepartureDate() {
-        LocalDateTime departuretime = LocalDateTime.parse(_flightdate.getDepartureGMT().toString());
-        ZonedDateTime zdeparturetime = ZonedDateTime.of(departuretime, ZoneId.of("UTC"));
-
-        ZoneId departurezone = ZoneId.of(_departureairport.getTimeZoneId());
-        ZonedDateTime localdeparturetime = zdeparturetime.withZoneSameInstant(departurezone);
-
-        String departurestring = "";
-        departurestring += "Departing at local time: "
-                + TextColor.ANSI_BLUE
-                + localdeparturetime.getDayOfMonth()
-                + " " + localdeparturetime.getMonth()
-                + " " + localdeparturetime.getYear()
-                + " at " + localdeparturetime.getHour()
-                + ":" + localdeparturetime.getMinute()
-                + TextColor.ANSI_RESET;
-
-        return departurestring;
-
+    public int compareTo(Flight flight) {
+        return this.getFlightNumber().compareTo(flight.getFlightNumber());
     }
 
     public String toString() {

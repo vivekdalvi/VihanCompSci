@@ -2,7 +2,7 @@ package OsborneAirlines;
 
 import java.util.ArrayList;
 
-public class Reservation {
+public class Reservation implements Comparable<Reservation> {
 
     private ArrayList<Passenger> _passengerlist = new ArrayList<Passenger>();
     Flight _flight;
@@ -50,5 +50,9 @@ public class Reservation {
                 + "Passenger List: " + "\n\t"
                 + _passengerlist.toString();
         return reservationstring;
+    }
+
+    public int compareTo(Reservation reservation) {
+        return this.getReservationNumber() - reservation.getReservationNumber();
     }
 }

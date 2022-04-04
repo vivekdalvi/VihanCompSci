@@ -2,7 +2,7 @@ package OsborneAirlines;
 
 import java.util.TimeZone;
 
-public class Airport {
+public class Airport implements Comparable<Airport> {
     private String _name;
     private String _city;
     private String _state;
@@ -51,5 +51,9 @@ public class Airport {
         airportstring += "\t\tAirport TimeZone: " + TextColor.ANSI_BLUE
                 + TimeZone.getTimeZone(_timezoneid).getDisplayName() + TextColor.ANSI_RESET;
         return airportstring;
+    }
+
+    public int compareTo(Airport airport) {
+        return this.getName().compareTo(airport.getName());
     }
 }

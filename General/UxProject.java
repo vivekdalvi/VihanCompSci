@@ -1,3 +1,5 @@
+package General;
+
 public class UxProject {
 
     public static void main(String[] args) {

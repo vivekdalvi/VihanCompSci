@@ -1,3 +1,4 @@
+package General;
 /*
 * NameGenerator.java
 * Vihan Dalvi

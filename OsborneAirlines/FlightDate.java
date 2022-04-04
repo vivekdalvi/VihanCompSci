@@ -1,22 +1,25 @@
 package OsborneAirlines;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 public class FlightDate {
-    LocalDateTime _gmtdeparturetime;
-    LocalDateTime _gmtarrivaltime;
+    ZonedDateTime _utcdeparturetime;
+    ZonedDateTime _utcarrivaltime;
 
-    public FlightDate(String arrivaltime, String departuretime) {
-        _gmtarrivaltime = LocalDateTime.parse(arrivaltime);
-        _gmtdeparturetime = LocalDateTime.parse(departuretime);
+    public FlightDate(String departuretime, String arrivaltime) {
+
+        _utcarrivaltime = LocalDateTime.parse(arrivaltime).atZone(ZoneId.of("UTC"));
+        _utcdeparturetime = LocalDateTime.parse(departuretime).atZone(ZoneId.of("UTC"));
     }
 
-    public LocalDateTime getDepartureGMT() {
-        return _gmtdeparturetime;
+    public ZonedDateTime getDepartureGMT() {
+        return _utcdeparturetime;
     }
 
-    public LocalDateTime getArrivalGMT() {
-        return _gmtarrivaltime;
+    public ZonedDateTime getArrivalGMT() {
+        return _utcarrivaltime;
     }
 
 }

@@ -1,3 +1,4 @@
+package General;
 /*
  * LottoSetOfNumbers.java
  * by Vihan Dalvi
