@@ -13,6 +13,10 @@ public class Passenger implements Comparable<Passenger> {
         return _firstname + " " + _lastname;
     }
 
+    public String getFileName() {
+        return _lastname + " " + _firstname;
+    }
+
     public String toString() {
         return TextColor.ANSI_BLUE + _firstname + " " + _lastname + TextColor.ANSI_RESET;
     }

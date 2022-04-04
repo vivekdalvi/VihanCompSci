@@ -70,6 +70,10 @@ public class Util {
 
     protected void PrintList(Iterable list) {
         System.out.println();
+        if (list == null) {
+            System.out.println(TextColor.ANSI_RED + "List is empty" + TextColor.ANSI_RESET);
+            return;
+        }
         for (Object object : list) {
             System.out.println(object + "\n");
         }

@@ -1,7 +1,7 @@
 //reservation number, flightnumber, passenger list
 1,DELTA555
-Dalvi Vivek,Dalvi Vihan,Obama Barack
+DALVI VIVEK,DALVI VIHAN,OBAMA BARACK,
 2,DELTA556
-Dalvi Vivek,Dalvi Vihan,Obama Barack
+DALVI VIVEK,DALVI VIHAN,OBAMA BARACK,
 3,UNITED333
-Moon Sleeping,Sun Rising,River Flowing
+MOON SLEEPING,SUN RISING,RIVER FLOWING,

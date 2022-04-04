@@ -34,9 +34,24 @@ public class Flight implements Comparable<Flight> {
         return _capacity;
     }
 
+    public FlightDate getFlightDate() {
+        return _flightdate;
+    }
+
     public String GetLocalDepartureDate() {
         ZoneId departurezone = ZoneId.of(_departureairport.getTimeZoneId());
-        ZonedDateTime localdeparturetime = _flightdate.getDepartureGMT().withZoneSameInstant(departurezone);
+        ZonedDateTime localdeparturetime = _flightdate.getDepartureUTC().withZoneSameInstant(departurezone);
+
+        int hour = localdeparturetime.getHour();
+        int min = localdeparturetime.getMinute();
+        String hh = String.valueOf(hour);
+        String mm = String.valueOf(min);
+        if (hour < 10) {
+            hh = "0" + hour;
+        }
+        if (min < 10) {
+            mm = "0" + min;
+        }
 
         String departurestring = "";
         departurestring += "Departing at local time: "
@@ -44,8 +59,8 @@ public class Flight implements Comparable<Flight> {
                 + localdeparturetime.getDayOfMonth()
                 + " " + localdeparturetime.getMonth()
                 + " " + localdeparturetime.getYear()
-                + " at " + localdeparturetime.getHour()
-                + ":" + localdeparturetime.getMinute()
+                + " at " + hh
+                + ":" + mm
                 + TextColor.ANSI_RESET;
 
         return departurestring;
@@ -53,16 +68,27 @@ public class Flight implements Comparable<Flight> {
 
     public String GetLocalArrivalDate() {
         ZoneId arrivalzone = ZoneId.of(_arrivalairport.getTimeZoneId());
-        ZonedDateTime localarrivaltime = _flightdate.getArrivalGMT().withZoneSameInstant(arrivalzone);
+        ZonedDateTime localarrivaltime = _flightdate.getArrivalUTC().withZoneSameInstant(arrivalzone);
 
         String arrivalstring = "";
+        int hour = localarrivaltime.getHour();
+        int min = localarrivaltime.getMinute();
+        String hh = String.valueOf(hour);
+        String mm = String.valueOf(min);
+        if (hour < 10) {
+            hh = "0" + hour;
+        }
+        if (min < 10) {
+            mm = "0" + min;
+        }
+
         arrivalstring += "Arriving at local time: "
                 + TextColor.ANSI_BLUE
                 + localarrivaltime.getDayOfMonth()
                 + " " + localarrivaltime.getMonth()
                 + " " + localarrivaltime.getYear()
-                + " at " + localarrivaltime.getHour()
-                + ":" + localarrivaltime.getMinute()
+                + " at " + hh
+                + ":" + mm
                 + TextColor.ANSI_RESET;
 
         return arrivalstring;

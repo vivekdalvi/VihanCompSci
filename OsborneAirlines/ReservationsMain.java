@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class ReservationsMain {
 
@@ -72,6 +74,46 @@ public class ReservationsMain {
 
             }
             fileReader.close();
+        }
+    }
+
+    public static void WriteFile(String filepath, DataType datatype) throws FileNotFoundException {
+        try {
+            FileWriter writer = new FileWriter(filepath);
+
+            if (datatype == DataType.AIRPORT) {
+                writer.write("//Name, City, State, Timezone\n");
+                for (Airport airport : _airports) {
+                    writer.write(airport.getName() + ","
+                            + airport.getCity() + ","
+                            + airport.getState() + ","
+                            + airport.getTimeZoneId() + "\n");
+                }
+            } else if (datatype == DataType.FLIGHT) {
+                writer.write(
+                        "//departure airport, departure time, arrival time, arrival airport, flightnumber, capacity\n");
+                for (Flight flight : _flights) {
+
+                    writer.write(flight.getDepartureAirport().getName() + ","
+                            + flight.getFlightDate().getDeparture().toString() + ","
+                            + flight.getFlightDate().getArrival().toString() + ","
+                            + flight.getArrivalAirport().getName() + ","
+                            + flight.getFlightNumber() + ","
+                            + flight.getCapacity() + "\n");
+                }
+            } else if (datatype == DataType.RESERVATION) {
+                writer.write("//reservation number, flightnumber, passenger list\n");
+                for (Reservation reservation : _reservations) {
+                    writer.write(reservation.getReservationNumber() + ","
+                            + reservation.getFlight().getFlightNumber() + "\n");
+                    for (Passenger passenger : reservation.getPassengerList()) {
+                        writer.write(passenger.getFileName() + ",");
+                    }
+                    writer.write("\n");
+                }
+            }
+            writer.close();
+        } catch (IOException e) {
         }
     }
 
@@ -175,9 +217,14 @@ public class ReservationsMain {
         // MainMenu(kbreader);
     }
 
-    private static void SaveMenu(Scanner kbreader) {
-        System.out.println(TextColor.ANSI_RED + "Not Implemented" + TextColor.ANSI_RESET);
-        MainMenu(kbreader);
+    private static void SaveMenu(Scanner kbreader) throws FileNotFoundException {
+        // WriteFile(".\\OsborneAirlines\\airports1.txt", DataType.AIRPORT);
+        // WriteFile(".\\OsborneAirlines\\flights1.txt", DataType.FLIGHT);
+        // WriteFile(".\\OsborneAirlines\\reservations1.txt", DataType.RESERVATION);
+
+        WriteFile(_airportfilepath, DataType.AIRPORT);
+        WriteFile(_flightfilepath, DataType.FLIGHT);
+        WriteFile(_reservationfilepath, DataType.RESERVATION);
     }
 
     private static void ReservationMenu(Scanner kbreader) {
