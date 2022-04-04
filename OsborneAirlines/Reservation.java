@@ -6,9 +6,9 @@ public class Reservation implements Comparable<Reservation> {
 
     private ArrayList<Passenger> _passengerlist = new ArrayList<Passenger>();
     Flight _flight;
-    int _reservationnumber;
+    String _reservationnumber;
 
-    public Reservation(int reservationnumber, Flight flight, String[] passengerlist) {
+    public Reservation(String reservationnumber, Flight flight, String[] passengerlist) {
         _reservationnumber = reservationnumber;
         _flight = flight;
         for (String string : passengerlist) {
@@ -22,7 +22,7 @@ public class Reservation implements Comparable<Reservation> {
         }
     }
 
-    public Reservation(int reservationnumber, Flight flight, ArrayList<Passenger> passengerlist) {
+    public Reservation(String reservationnumber, Flight flight, ArrayList<Passenger> passengerlist) {
         _reservationnumber = reservationnumber;
         _flight = flight;
         _passengerlist = passengerlist;
@@ -36,7 +36,7 @@ public class Reservation implements Comparable<Reservation> {
         return _flight;
     }
 
-    public int getReservationNumber() {
+    public String getReservationNumber() {
         return _reservationnumber;
     }
 
@@ -53,6 +53,6 @@ public class Reservation implements Comparable<Reservation> {
     }
 
     public int compareTo(Reservation reservation) {
-        return this.getReservationNumber() - reservation.getReservationNumber();
+        return this.getReservationNumber().compareTo(reservation.getReservationNumber());
     }
 }

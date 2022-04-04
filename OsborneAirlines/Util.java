@@ -19,9 +19,9 @@ public class Util {
         return a;
     }
 
-    protected Reservation FindReservation(int reservationnumber) {
+    protected Reservation FindReservation(String reservationnumber) {
         Reservation a = _reservations.stream()
-                .filter(reservation -> reservationnumber == (reservation.getReservationNumber())).findAny()
+                .filter(reservation -> reservationnumber.equals(reservation.getReservationNumber())).findAny()
                 .orElse(null);
         return a;
     }

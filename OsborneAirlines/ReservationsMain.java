@@ -65,10 +65,10 @@ public class ReservationsMain {
                 } else if (datatype == DataType.RESERVATION) {
                     String[] reservationdata = fileReader.nextLine().split(",");
                     // reservation number, flightnumber, passenger list
-                    int reservationnumber = Integer.parseInt(reservationdata[0]);
+                    // int reservationnumber = Integer.parseInt(reservationdata[0]);
                     Flight f = utility.FindFlight(reservationdata[1]);
                     String[] passengerdata = fileReader.nextLine().split(",");
-                    Reservation r = new Reservation(reservationnumber, f, passengerdata);
+                    Reservation r = new Reservation(reservationdata[0], f, passengerdata);
                     _reservations.add(r);
                 }
 
@@ -225,6 +225,8 @@ public class ReservationsMain {
         WriteFile(_airportfilepath, DataType.AIRPORT);
         WriteFile(_flightfilepath, DataType.FLIGHT);
         WriteFile(_reservationfilepath, DataType.RESERVATION);
+        System.out.println(TextColor.ANSI_RED + "All Flight, Airport & Reservation Details are Written to Files"
+                + TextColor.ANSI_RESET);
     }
 
     private static void ReservationMenu(Scanner kbreader) {
@@ -249,13 +251,11 @@ public class ReservationsMain {
             } else if (input == 2) {
                 // search by reservation number
                 System.out.print(TextColor.ANSI_BLUE + "\nEnter Reservation Number: " + TextColor.ANSI_RESET);
-                if (kbreader.hasNextInt()) {
-                    Reservation r = utility.FindReservation(Integer.parseInt(kbreader.nextLine()));
-                    if (r != null) {
-                        System.out.println(r);
-                    } else {
-                        System.out.println(TextColor.ANSI_BLUE + "Reservation Does not exist" + TextColor.ANSI_RESET);
-                    }
+                Reservation r = utility.FindReservation(kbreader.nextLine());
+                if (r != null) {
+                    System.out.println(r);
+                } else {
+                    System.out.println(TextColor.ANSI_BLUE + "Reservation Does not exist" + TextColor.ANSI_RESET);
                 }
             } else if (input == 3) {
                 // search by customer name
@@ -269,24 +269,24 @@ public class ReservationsMain {
                     System.out.println(reservation + "\n");
                 }
             } else if (input == 4) {
-                // create reservation
+                // Create reservation
                 System.out.print(TextColor.ANSI_BLUE + "\nEnter Flight Number: " + TextColor.ANSI_RESET);
                 Flight f = utility.FindFlight(kbreader.nextLine().toUpperCase());
                 if (f != null) {
                     _ux.Ux_CreateReservation(f);
+                } else {
+                    System.out.println(TextColor.ANSI_RED + "Flight does not exist!" + TextColor.ANSI_RESET);
                 }
             } else if (input == 5) {
                 // delete reservation
                 System.out.print(TextColor.ANSI_BLUE + "\nEnter Reservation Number: " + TextColor.ANSI_RESET);
-                if (kbreader.hasNextInt()) {
-                    Reservation r = utility.FindReservation(Integer.parseInt(kbreader.nextLine()));
-                    if (r != null) {
-                        _reservations.remove(r);
-                        System.out.println(TextColor.ANSI_BLUE + "Below Reservation is Removed....");
-                        System.out.println(r + TextColor.ANSI_RESET);
-                    } else {
-                        System.out.println(TextColor.ANSI_BLUE + "Reservation Does not exist" + TextColor.ANSI_RESET);
-                    }
+                Reservation r = utility.FindReservation(kbreader.nextLine());
+                if (r != null) {
+                    _reservations.remove(r);
+                    System.out.println(TextColor.ANSI_BLUE + "Below Reservation is Removed....");
+                    System.out.println(r + TextColor.ANSI_RESET);
+                } else {
+                    System.out.println(TextColor.ANSI_BLUE + "Reservation Does not exist" + TextColor.ANSI_RESET);
                 }
             } else {
                 input = 0;

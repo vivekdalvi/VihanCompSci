@@ -56,7 +56,8 @@ public class UserInterface {
     protected Reservation Ux_CreateReservation(Flight f) {
         int customerinput = 9;
         ArrayList<Passenger> passengers = new ArrayList<Passenger>();
-        Reservation r = new Reservation(_reservations.size() + 1, f, passengers);
+        System.out.print(TextColor.ANSI_BLUE + "Please Enter Reservation Number: " + TextColor.ANSI_RESET);
+        Reservation r = new Reservation(_kbreader.nextLine(), f, passengers);
         while (customerinput != 0) {
             Passenger p = Ux_CreatePassenger();
             r.getPassengerList().add(p);
