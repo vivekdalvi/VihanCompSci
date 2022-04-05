@@ -24,6 +24,7 @@ public class ReservationsMain {
         AIRPORT, FLIGHT, RESERVATION
     };
 
+    // Reads file at the startup
     public static void ReadFile(String filepath, DataType datatype) throws FileNotFoundException {
         File datafile = new File(filepath);
         // System.out.println("File exists is: " + datafile.exists());
@@ -82,6 +83,7 @@ public class ReservationsMain {
         }
     }
 
+    // Writes files when user selects safe menu
     public static void WriteFile(String filepath, DataType datatype) throws FileNotFoundException {
         try {
             FileWriter writer = new FileWriter(filepath);
@@ -158,6 +160,7 @@ public class ReservationsMain {
         kbreader.close();
     }
 
+    // This handles Main menu
     private static void MainMenu(Scanner kbreader) {
         System.out.println(TextColor.ANSI_GREEN + "\n\nPlease select one of the options below...");
         System.out.println("1: Print");
@@ -170,6 +173,7 @@ public class ReservationsMain {
         System.out.print("Please Enter Menu Number: " + TextColor.ANSI_RESET);
     }
 
+    // This handles Print menu
     private static void PrintMenu(Scanner kbreader) {
         int input = 7;
         do {
@@ -213,6 +217,7 @@ public class ReservationsMain {
         // MainMenu(kbreader);
     }
 
+    // This handles Save menu
     private static void SaveMenu(Scanner kbreader) throws FileNotFoundException {
         // WriteFile(".\\OsborneAirlines\\airports1.txt", DataType.AIRPORT);
         // WriteFile(".\\OsborneAirlines\\flights1.txt", DataType.FLIGHT);
@@ -225,6 +230,7 @@ public class ReservationsMain {
                 + TextColor.ANSI_RESET);
     }
 
+    // This handles Reservation menu
     private static void ReservationMenu(Scanner kbreader) {
         int input = 7;
         do {
@@ -287,6 +293,7 @@ public class ReservationsMain {
 
     }
 
+    // This handles Fight menu
     private static void FlightMenu(Scanner kbreader) {
         int input = 7;
         do {
@@ -369,6 +376,7 @@ public class ReservationsMain {
         } while (input != 0);
     }
 
+    // This handles Passenger menu
     private static void PassengerMenu(Scanner kbreader) {
         int input = 7;
         do {
@@ -409,6 +417,7 @@ public class ReservationsMain {
         } while (input != 0);
     }
 
+    // This handles Airport menu
     private static void AirportMenu(Scanner kbreader) {
         int input = 7;
         do {
@@ -437,6 +446,7 @@ public class ReservationsMain {
                 // Create New Airport
                 _ux.Ux_CreateAirport();
             } else if (input == 4) {
+                // delete airport
                 System.out.print(TextColor.ANSI_BLUE + "\nEnter Airport Name: " + TextColor.ANSI_RESET);
                 Airport a = utility.FindAirport(kbreader.nextLine().toUpperCase());
                 if (a != null) {
@@ -449,13 +459,14 @@ public class ReservationsMain {
                 } else {
                     System.out.println(TextColor.ANSI_BLUE + "Airport Does not exist" + TextColor.ANSI_RESET);
                 }
-
             } else {
                 input = 0;
             }
         } while (input != 0);
     }
 
+    // This is a common function to handle wrong input in menu (such as return key
+    // or letters instead of numbers)
     private static int ReadMenuInput() {
         if (kbreader.hasNextInt()) {
             String inputstring = kbreader.nextLine();
