@@ -32,7 +32,6 @@ public class UserInterface {
         Passenger p = _utility.FindPassenger(firstname, lastname);
         if (p == null) {
             p = new Passenger(firstname, lastname);
-            System.out.println(TextColor.ANSI_BLUE + "New Passenger added" + TextColor.ANSI_RESET);
         }
         return p;
     }
@@ -64,7 +63,8 @@ public class UserInterface {
             System.out.print(TextColor.ANSI_BLUE + "Do you want to add another customer? [yes: 1 /No: 0]"
                     + TextColor.ANSI_RESET);
             if (_kbreader.hasNextInt()) {
-                customerinput = Integer.parseInt(_kbreader.nextLine());
+                String inputstring = _kbreader.nextLine();
+                customerinput = Integer.parseInt(inputstring);
             }
         }
         _reservations.add(r);
@@ -81,7 +81,7 @@ public class UserInterface {
             System.out.print(TextColor.ANSI_BLUE + "\nState: " + TextColor.ANSI_RESET);
             String state = _kbreader.nextLine().toUpperCase();
             System.out.print(TextColor.ANSI_BLUE + "\nTimeZone: " + TextColor.ANSI_RESET);
-            String timezoneid = _kbreader.nextLine().toUpperCase();
+            String timezoneid = _kbreader.nextLine();
             airport = new Airport(name, city, state, timezoneid);
             _airports.add(airport);
         } else {

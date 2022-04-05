@@ -1,6 +1,6 @@
 //Name, City, State, Timezone
-SEA,SEATTLE,WASHINGTON,America/Los_Angeles
-JFK,NEW YORK,NEW YORK,America/New_York
-SFO,SAN FRANCISCO,CALIFORNIA,America/Los_Angeles
-LAX,LOS ANGELES,CALIFORNIA,America/Los_Angeles
 DTT,DETROIT,MICHIGAN,America/Detroit
+JFK,NEW YORK,NEW YORK,America/New_York
+LAX,LOS ANGELES,CALIFORNIA,America/Los_Angeles
+SEA,SEATTLE,WASHINGTON,America/Los_Angeles
+SFO,SAN FRANCISCO,CALIFORNIA,America/Los_Angeles

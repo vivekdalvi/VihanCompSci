@@ -5,6 +5,9 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
+
+import org.w3c.dom.Text;
+
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -50,26 +53,31 @@ public class ReservationsMain {
                     // departure airport, departure time, arrival time, arrival airport,
                     // flightnumber, capacity
                     Airport departureairport = utility.FindAirport(flightdata[0]);
-                    FlightDate flightdate = new FlightDate(
-                            // arrival time
-                            flightdata[1].toUpperCase(),
-                            // departure time
-                            flightdata[2].toUpperCase());
                     Airport arrivalairport = utility.FindAirport(flightdata[3]);
-                    Flight f = new Flight(departureairport, arrivalairport, flightdate,
-                            // flight number
-                            flightdata[4].toUpperCase(),
-                            // capacity
-                            Integer.parseInt(flightdata[5]));
-                    _flights.add(f);
+                    if (departureairport != null && arrivalairport != null) {
+                        FlightDate flightdate = new FlightDate(
+                                // arrival time
+                                flightdata[1].toUpperCase(),
+                                // departure time
+                                flightdata[2].toUpperCase());
+                        Flight f = new Flight(departureairport, arrivalairport, flightdate,
+                                // flight number
+                                flightdata[4].toUpperCase(),
+                                // capacity
+                                Integer.parseInt(flightdata[5]));
+                        _flights.add(f);
+                    }
                 } else if (datatype == DataType.RESERVATION) {
                     String[] reservationdata = fileReader.nextLine().split(",");
                     // reservation number, flightnumber, passenger list
                     // int reservationnumber = Integer.parseInt(reservationdata[0]);
                     Flight f = utility.FindFlight(reservationdata[1]);
-                    String[] passengerdata = fileReader.nextLine().split(",");
-                    Reservation r = new Reservation(reservationdata[0], f, passengerdata);
-                    _reservations.add(r);
+                    if (f != null) {
+                        String[] passengerdata = fileReader.nextLine().split(",");
+                        Reservation r = new Reservation(reservationdata[0], f, passengerdata);
+                        _reservations.add(r);
+                    }
+
                 }
 
             }
@@ -123,16 +131,11 @@ public class ReservationsMain {
         ReadFile(_flightfilepath, DataType.FLIGHT);
         ReadFile(_reservationfilepath, DataType.RESERVATION);
 
-        int input = 9;
-
+        int input = -5;
         // main input loop
         do {
             MainMenu(kbreader);
-            if (kbreader.hasNextInt()) {
-                input = Integer.parseInt(kbreader.nextLine());
-            } else {
-                input = 0;
-            }
+            input = ReadMenuInput();
             if (input == 1) {
                 PrintMenu(kbreader);
                 input = 9;
@@ -181,11 +184,7 @@ public class ReservationsMain {
             System.out.println("5: Passengers for a Flight");
             System.out.println("ANYTHING ELSE: <-- Go Back to Main Menu");
             System.out.print("Please Enter Menu Number: " + TextColor.ANSI_RESET);
-            if (kbreader.hasNextInt()) {
-                input = Integer.parseInt(kbreader.nextLine());
-            } else {
-                input = 0;
-            }
+            input = ReadMenuInput();
             if (input == 1) {
                 utility.PrintList(_reservations);
             } else if (input == 2) {
@@ -225,7 +224,7 @@ public class ReservationsMain {
         WriteFile(_airportfilepath, DataType.AIRPORT);
         WriteFile(_flightfilepath, DataType.FLIGHT);
         WriteFile(_reservationfilepath, DataType.RESERVATION);
-        System.out.println(TextColor.ANSI_RED + "All Flight, Airport & Reservation Details are Written to Files"
+        System.out.println(TextColor.ANSI_BLUE + "All Flight, Airport & Reservation Details are Written to Files"
                 + TextColor.ANSI_RESET);
     }
 
@@ -240,11 +239,7 @@ public class ReservationsMain {
             System.out.println("5: Delete Reservation");
             System.out.println("ANYTHING ELSE: <-- Go Back to Main Menu");
             System.out.print("Please Enter Menu Number: " + TextColor.ANSI_RESET);
-            if (kbreader.hasNextInt()) {
-                input = Integer.parseInt(kbreader.nextLine());
-            } else {
-                input = 0;
-            }
+            input = ReadMenuInput();
             if (input == 1) {
                 Collections.sort(_reservations);
                 utility.PrintList(_reservations);
@@ -259,12 +254,12 @@ public class ReservationsMain {
                 }
             } else if (input == 3) {
                 // search by customer name
-                System.out.println("\nDetails for Passenger ");
-                System.out.print(TextColor.ANSI_BLUE + "Enter First Name: " + TextColor.ANSI_RESET);
-                String firstname = kbreader.nextLine().toUpperCase();
-                System.out.print(TextColor.ANSI_BLUE + "Enter Last Name: " + TextColor.ANSI_RESET);
-                String lastname = kbreader.nextLine().toUpperCase();
-                ArrayList<Reservation> customerreservations = utility.FindReservationForPassenger(firstname, lastname);
+                Passenger p = _ux.Ux_CreatePassenger();
+                ArrayList<Reservation> customerreservations = utility.FindReservationForPassenger(p.getFirstName(),
+                        p.getLastName());
+                if (customerreservations.size() == 0) {
+                    System.out.println(TextColor.ANSI_RED + "No customer with that name found!" + TextColor.ANSI_RESET);
+                }
                 for (Reservation reservation : customerreservations) {
                     System.out.println(reservation + "\n");
                 }
@@ -306,11 +301,7 @@ public class ReservationsMain {
             System.out.println("5: Delete Flight");
             System.out.println("ANYTHING ELSE: <-- Go Back to Main Menu");
             System.out.print("Please Enter Menu Number: " + TextColor.ANSI_RESET);
-            if (kbreader.hasNextInt()) {
-                input = Integer.parseInt(kbreader.nextLine());
-            } else {
-                input = 0;
-            }
+            input = ReadMenuInput();
             if (input == 1) {
                 Collections.sort(_flights);
                 utility.PrintList(_flights);
@@ -326,12 +317,12 @@ public class ReservationsMain {
                 }
             } else if (input == 3) {
                 // search by customer name
-                System.out.println("\nDetails for Passenger ");
-                System.out.print(TextColor.ANSI_BLUE + "Enter First Name: " + TextColor.ANSI_RESET);
-                String firstname = kbreader.nextLine().toUpperCase();
-                System.out.print(TextColor.ANSI_BLUE + "Enter Last Name: " + TextColor.ANSI_RESET);
-                String lastname = kbreader.nextLine().toUpperCase();
-                ArrayList<Reservation> customerreservations = utility.FindReservationForPassenger(firstname, lastname);
+                Passenger p = _ux.Ux_CreatePassenger();
+                ArrayList<Reservation> customerreservations = utility.FindReservationForPassenger(p.getFirstName(),
+                        p.getLastName());
+                if (customerreservations.size() == 0) {
+                    System.out.println(TextColor.ANSI_RED + "No customer with that name found!" + TextColor.ANSI_RESET);
+                }
                 for (Reservation reservation : customerreservations) {
                     System.out.println(reservation.getFlight() + "\n");
                 }
@@ -387,30 +378,34 @@ public class ReservationsMain {
             System.out.println(TextColor.ANSI_BLUE + "\n\nMAIN > PASSENGERS:" + TextColor.ANSI_GREEN);
             System.out.println("1: Passengers by Alphabetical Order");
             System.out.println("2: Search by Name");
-            System.out.println("3: Create New Passenger");
-            System.out.println("4: Delete Passenger");
+            System.out.println("3: Delete Passenger");
             System.out.println("ANYTHING ELSE: <-- Go Back to Main Menu");
             System.out.print("Please Enter Menu Number: " + TextColor.ANSI_RESET);
-            if (kbreader.hasNextInt()) {
-                input = Integer.parseInt(kbreader.nextLine());
-            } else {
-                input = 0;
-            }
+            input = ReadMenuInput();
             if (input == 1) {
                 System.out.println(TextColor.ANSI_BLUE + "NOT IMPLEMENTED" + TextColor.ANSI_RESET);
             } else if (input == 2) {
-                // search by name
-                System.out.print(TextColor.ANSI_BLUE + "\nEnter Airport Name: " + TextColor.ANSI_RESET);
-                Airport a = utility.FindAirport(kbreader.nextLine().toUpperCase());
-                if (a != null) {
-                    System.out.println(a);
-                } else {
-                    System.out.println(TextColor.ANSI_BLUE + "Airport Does not exist" + TextColor.ANSI_RESET);
+                Passenger p = _ux.Ux_CreatePassenger();
+                ArrayList<Reservation> customerreservations = utility.FindReservationForPassenger(p.getFirstName(),
+                        p.getLastName());
+                if (customerreservations.size() == 0) {
+                    System.out.println(TextColor.ANSI_RED + "No customer with that name found!" + TextColor.ANSI_RESET);
+                }
+                for (Reservation reservation : customerreservations) {
+                    System.out.println(reservation + "\n");
                 }
             } else if (input == 3) {
-                // Create New passenger
-                // _ux.Ux_CreatePassenger();
-                System.out.println(TextColor.ANSI_BLUE + "NOT IMPLEMENTED" + TextColor.ANSI_RESET);
+                Passenger p = _ux.Ux_CreatePassenger();
+                ArrayList<Reservation> customerreservations = utility.FindReservationForPassenger(p.getFirstName(),
+                        p.getLastName());
+                if (customerreservations.size() == 0) {
+                    System.out.println(TextColor.ANSI_RED + "No customer with that name found!" + TextColor.ANSI_RESET);
+                }
+                for (Reservation reservation : customerreservations) {
+                    System.out.println(TextColor.ANSI_RED + "Above Passenger deleted from Reservation "
+                            + reservation.getReservationNumber() + TextColor.ANSI_RESET);
+                    reservation.getPassengerList().remove(utility.FindPassenger(p.getFirstName(), p.getLastName()));
+                }
             } else {
                 input = 0;
             }
@@ -427,11 +422,7 @@ public class ReservationsMain {
             System.out.println("4: Delete Airport");
             System.out.println("ANYTHING ELSE: <-- Go Back to Main Menu");
             System.out.print("Please Enter Menu Number: " + TextColor.ANSI_RESET);
-            if (kbreader.hasNextInt()) {
-                input = Integer.parseInt(kbreader.nextLine());
-            } else {
-                input = 0;
-            }
+            input = ReadMenuInput();
             if (input == 1) {
                 // print flight by alhpabetical order
                 Collections.sort(_airports);
@@ -449,12 +440,32 @@ public class ReservationsMain {
                 // Create New Airport
                 _ux.Ux_CreateAirport();
             } else if (input == 4) {
-                // TODO: DELETE AIRPORT
-                System.out.println(TextColor.ANSI_BLUE + "NOT IMPLEMENTED" + TextColor.ANSI_RESET);
+                System.out.print(TextColor.ANSI_BLUE + "\nEnter Airport Name: " + TextColor.ANSI_RESET);
+                Airport a = utility.FindAirport(kbreader.nextLine().toUpperCase());
+                if (a != null) {
+                    System.out
+                            .println(TextColor.ANSI_RED
+                                    + "Deleting below Airport....flights/reservations from this airport are not valid"
+                                    + TextColor.ANSI_RESET);
+                    System.out.println(a);
+                    _airports.remove(a);
+                } else {
+                    System.out.println(TextColor.ANSI_BLUE + "Airport Does not exist" + TextColor.ANSI_RESET);
+                }
 
             } else {
                 input = 0;
             }
         } while (input != 0);
+    }
+
+    private static int ReadMenuInput() {
+        if (kbreader.hasNextInt()) {
+            String inputstring = kbreader.nextLine();
+            if (!inputstring.equals("")) {
+                return Integer.parseInt(inputstring);
+            }
+        }
+        return 0;
     }
 }

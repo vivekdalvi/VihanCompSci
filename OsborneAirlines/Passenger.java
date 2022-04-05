@@ -17,6 +17,14 @@ public class Passenger implements Comparable<Passenger> {
         return _lastname + " " + _firstname;
     }
 
+    public String getFirstName() {
+        return _firstname;
+    }
+
+    public String getLastName() {
+        return _lastname;
+    }
+
     public String toString() {
         return TextColor.ANSI_BLUE + _firstname + " " + _lastname + TextColor.ANSI_RESET;
     }
