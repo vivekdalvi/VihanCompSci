@@ -5,9 +5,6 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
-
-import org.w3c.dom.Text;
-
 import java.io.FileWriter;
 import java.io.IOException;
 
