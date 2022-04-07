@@ -17,7 +17,7 @@ public class ReservationsMain {
     private final static ArrayList<Airport> _airports = new ArrayList<Airport>();
     private final static ArrayList<Reservation> _reservations = new ArrayList<Reservation>();
     private final static Scanner kbreader = new Scanner(System.in);
-    private final static UserInterface _ux = new UserInterface(_airports, _flights, _reservations, kbreader, utility);
+    private final static UserInterface _ux = new UserInterface(_airports, _flights, _reservations, kbreader);
 
     public static enum DataType {
         AIRPORT, FLIGHT, RESERVATION
