@@ -14,10 +14,13 @@ public class Util {
         _reservations = reservations;
     }
 
-    protected Airport FindAirport(String airportname) {
-        Airport a = _airports.stream().filter(airport -> airportname.equals(airport.getName())).findAny().orElse(null);
-        return a;
-    }
+    /*
+     * protected Airport FindAirport(String airportname) {
+     * Airport a = _airports.stream().filter(airport ->
+     * airportname.equals(airport.getName())).findAny().orElse(null);
+     * return a;
+     * }
+     */
 
     protected Reservation FindReservation(String reservationnumber) {
         Reservation a = _reservations.stream()
