@@ -1,5 +1,6 @@
 package OsborneAirlines;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -13,10 +14,14 @@ public class FlightDate {
     LocalDateTime _localdeparturetime;
     LocalDateTime _localarrivaltime;
 
+    Duration _d;
+
     // consutrctor takes time & date in YYYY-MM-DDTHH:MM format
     public FlightDate(String departuretime, String arrivaltime) {
         _localarrivaltime = LocalDateTime.parse(arrivaltime);
         _localdeparturetime = LocalDateTime.parse(departuretime);
+        _d = Duration.between(_localdeparturetime, _localarrivaltime);
+        System.out.println(_d);
         _utcarrivaltime = _localarrivaltime.atZone(ZoneId.of("UTC"));
         _utcdeparturetime = _localdeparturetime.atZone(ZoneId.of("UTC"));
     }
@@ -35,6 +40,10 @@ public class FlightDate {
 
     public LocalDateTime getArrival() {
         return _localarrivaltime;
+    }
+
+    public Duration getDuration() {
+        return _d;
     }
 
 }
