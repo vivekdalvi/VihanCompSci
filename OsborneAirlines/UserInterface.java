@@ -14,7 +14,7 @@ public class UserInterface {
     };
 
     public UserInterface(ArrayList<Airport> airports, ArrayList<Flight> flights, ArrayList<Reservation> reservations,
-            Scanner kbreader, Util utility) {
+            Scanner kbreader) {
         _airports = airports;
         _flights = flights;
         _reservations = reservations;
