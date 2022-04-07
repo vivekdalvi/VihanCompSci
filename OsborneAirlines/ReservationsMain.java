@@ -50,8 +50,8 @@ public class ReservationsMain {
                     String[] flightdata = fileReader.nextLine().split(",");
                     // departure airport, departure time, arrival time, arrival airport,
                     // flightnumber, capacity
-                    Airport departureairport = utility.FindAirport(flightdata[0]);
-                    Airport arrivalairport = utility.FindAirport(flightdata[3]);
+                    Airport departureairport = Airport.FindAirport(flightdata[0], _airports);
+                    Airport arrivalairport = Airport.FindAirport(flightdata[3], _airports);
                     if (departureairport != null && arrivalairport != null) {
                         FlightDate flightdate = new FlightDate(
                                 // arrival time
@@ -436,7 +436,7 @@ public class ReservationsMain {
             } else if (input == 2) {
                 // search by name
                 System.out.print(TextColor.ANSI_BLUE + "\nEnter Airport Name: " + TextColor.ANSI_RESET);
-                Airport a = utility.FindAirport(kbreader.nextLine().toUpperCase());
+                Airport a = Airport.FindAirport(kbreader.nextLine().toUpperCase(), _airports);
                 if (a != null) {
                     System.out.println(a);
                 } else {
@@ -448,7 +448,7 @@ public class ReservationsMain {
             } else if (input == 4) {
                 // delete airport
                 System.out.print(TextColor.ANSI_BLUE + "\nEnter Airport Name: " + TextColor.ANSI_RESET);
-                Airport a = utility.FindAirport(kbreader.nextLine().toUpperCase());
+                Airport a = Airport.FindAirport(kbreader.nextLine().toUpperCase(), _airports);
                 if (a != null) {
                     System.out
                             .println(TextColor.ANSI_RED

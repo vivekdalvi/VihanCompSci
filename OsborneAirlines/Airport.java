@@ -1,5 +1,6 @@
 package OsborneAirlines;
 
+import java.util.ArrayList;
 import java.util.TimeZone;
 
 public class Airport implements Comparable<Airport> {
@@ -55,5 +56,10 @@ public class Airport implements Comparable<Airport> {
 
     public int compareTo(Airport airport) {
         return this.getName().compareTo(airport.getName());
+    }
+
+    protected static Airport FindAirport(String airportname, ArrayList<Airport> airports) {
+        Airport a = airports.stream().filter(airport -> airportname.equals(airport.getName())).findAny().orElse(null);
+        return a;
     }
 }
