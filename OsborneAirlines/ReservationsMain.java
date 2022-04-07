@@ -16,7 +16,6 @@ public class ReservationsMain {
     private final static ArrayList<Flight> _flights = new ArrayList<Flight>();
     private final static ArrayList<Airport> _airports = new ArrayList<Airport>();
     private final static ArrayList<Reservation> _reservations = new ArrayList<Reservation>();
-    private final static Util utility = new Util(_airports, _flights, _reservations);
     private final static Scanner kbreader = new Scanner(System.in);
     private final static UserInterface _ux = new UserInterface(_airports, _flights, _reservations, kbreader, utility);
 
