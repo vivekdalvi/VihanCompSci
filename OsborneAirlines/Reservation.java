@@ -55,4 +55,11 @@ public class Reservation implements Comparable<Reservation> {
     public int compareTo(Reservation reservation) {
         return this.getReservationNumber().compareTo(reservation.getReservationNumber());
     }
+
+    protected static Reservation FindReservation(String reservationnumber, ArrayList<Reservation> reservations) {
+        Reservation a = reservations.stream()
+                .filter(reservation -> reservationnumber.equals(reservation.getReservationNumber())).findAny()
+                .orElse(null);
+        return a;
+    }
 }

@@ -2,6 +2,7 @@ package OsborneAirlines;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class Flight implements Comparable<Flight> {
     private Airport _departureairport;
@@ -80,6 +81,12 @@ public class Flight implements Comparable<Flight> {
         flightstring += GetLocalArrivalDate();
 
         return flightstring;
+    }
+
+    protected static Flight FindFlight(String flightnumber, ArrayList<Flight> flights) {
+        Flight f = flights.stream().filter(flight -> flightnumber.equals(flight.getFlightNumber())).findAny()
+                .orElse(null);
+        return f;
     }
 
 }

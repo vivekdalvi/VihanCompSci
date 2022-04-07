@@ -8,7 +8,6 @@ public class UserInterface {
     private ArrayList<Flight> _flights = null;
     private ArrayList<Reservation> _reservations = null;
     private Scanner _kbreader = null;
-    private Util _utility = null;
 
     public static enum AirportType {
         ARRIVAL, DEPARTURE, GENERAL
@@ -20,7 +19,6 @@ public class UserInterface {
         _flights = flights;
         _reservations = reservations;
         _kbreader = kbreader;
-        _utility = utility;
     }
 
     protected Passenger Ux_CreatePassenger() {
@@ -29,7 +27,7 @@ public class UserInterface {
         String firstname = _kbreader.nextLine().toUpperCase();
         System.out.print(TextColor.ANSI_BLUE + "Enter Last Name: " + TextColor.ANSI_RESET);
         String lastname = _kbreader.nextLine().toUpperCase();
-        Passenger p = _utility.FindPassenger(firstname, lastname);
+        Passenger p = Passenger.FindPassenger(firstname, lastname, _reservations);
         if (p == null) {
             p = new Passenger(firstname, lastname);
         }
@@ -74,7 +72,7 @@ public class UserInterface {
     protected Airport Ux_CreateAirport() {
         System.out.print(TextColor.ANSI_BLUE + "\nAirport Name: " + TextColor.ANSI_RESET);
         String name = _kbreader.nextLine().toUpperCase();
-        Airport airport = _utility.FindAirport(name);
+        Airport airport = Airport.FindAirport(name, _airports);
         if (airport == null) {
             System.out.print(TextColor.ANSI_BLUE + "\nCity: " + TextColor.ANSI_RESET);
             String city = _kbreader.nextLine().toUpperCase();
