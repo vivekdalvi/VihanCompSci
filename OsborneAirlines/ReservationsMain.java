@@ -5,6 +5,9 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
+
+import javax.xml.transform.Templates;
+
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -393,8 +396,23 @@ public class ReservationsMain {
             System.out.print("Please Enter Menu Number: " + TextColor.ANSI_RESET);
             input = ReadMenuInput();
             if (input == 1) {
-                // TODO: Passenger List sorted
-                System.out.println(TextColor.ANSI_BLUE + "NOT IMPLEMENTED" + TextColor.ANSI_RESET);
+                ArrayList<Passenger> temp = new ArrayList<Passenger>();
+                for (Reservation r : _reservations) {
+                    for (Passenger passenger : r.getPassengerList()) {
+                        temp.add(passenger);
+                    }
+                }
+                Collections.sort(temp);
+                for (int i = 0; i < temp.size(); i++) {
+                    System.out.println(temp.get(i));
+                    while (i < temp.size() - 1) {
+                        if (temp.get(i).compareTo(temp.get(i + 1)) == 0) {
+                            i++;
+                        } else {
+                            break;
+                        }
+                    }
+                }
             } else if (input == 2) {
                 Passenger p = Passenger.Ux_CreatePassenger(kbreader, _reservations);
                 ArrayList<Reservation> customerreservations = Passenger.FindReservationForPassenger(p.getFirstName(),
