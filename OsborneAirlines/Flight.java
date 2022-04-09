@@ -3,6 +3,7 @@ package OsborneAirlines;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Flight implements Comparable<Flight> {
     private Airport _departureairport;
@@ -89,4 +90,20 @@ public class Flight implements Comparable<Flight> {
         return f;
     }
 
+    protected static Flight Ux_CreateFlight(Scanner kbreader, Airport departureairport, Airport arrivalairport,
+            String flightnumber, ArrayList<Flight> flights) {
+        System.out.print(TextColor.ANSI_BLUE + "\nPlease Enter Departure Date [YYYY-MM-DDTHH:MM]: "
+                + TextColor.ANSI_RESET);
+        String ad = kbreader.nextLine().toUpperCase();
+        System.out.print(TextColor.ANSI_BLUE + "\nPlease Enter Arrival Date [YYYY-MM-DDTHH:MM]: "
+                + TextColor.ANSI_RESET);
+        String dd = kbreader.nextLine().toUpperCase();
+        FlightDate flightdate = new FlightDate(ad, dd);
+        System.out.print(
+                TextColor.ANSI_BLUE + "\nPlease Enter Flight Capacity: " + TextColor.ANSI_RESET);
+        Flight f = new Flight(departureairport, arrivalairport, flightdate, flightnumber,
+                Integer.parseInt(kbreader.nextLine().toUpperCase()));
+        flights.add(f);
+        return f;
+    }
 }

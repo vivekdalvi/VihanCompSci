@@ -17,7 +17,8 @@ public class ReservationsMain {
     private final static ArrayList<Airport> _airports = new ArrayList<Airport>();
     private final static ArrayList<Reservation> _reservations = new ArrayList<Reservation>();
     private final static Scanner kbreader = new Scanner(System.in);
-    private final static UserInterface _ux = new UserInterface(_airports, _flights, _reservations, kbreader);
+    // private final static UserInterface _ux = new UserInterface(_airports,
+    // _flights, _reservations, kbreader);
 
     public static enum DataType {
         AIRPORT, FLIGHT, RESERVATION
@@ -261,7 +262,7 @@ public class ReservationsMain {
                 }
             } else if (input == 3) {
                 // search by customer name
-                Passenger p = _ux.Ux_CreatePassenger();
+                Passenger p = Passenger.Ux_CreatePassenger(kbreader, _reservations);
                 ArrayList<Reservation> customerreservations = Passenger.FindReservationForPassenger(p.getFirstName(),
                         p.getLastName(), _reservations);
                 if (customerreservations.size() == 0) {
@@ -275,7 +276,7 @@ public class ReservationsMain {
                 System.out.print(TextColor.ANSI_BLUE + "\nEnter Flight Number: " + TextColor.ANSI_RESET);
                 Flight f = Flight.FindFlight(kbreader.nextLine().toUpperCase(), _flights);
                 if (f != null) {
-                    _ux.Ux_CreateReservation(f);
+                    Reservation.Ux_CreateReservation(kbreader, _reservations, f);
                 } else {
                     System.out.println(TextColor.ANSI_RED + "Flight does not exist!" + TextColor.ANSI_RESET);
                 }
@@ -325,7 +326,7 @@ public class ReservationsMain {
                 }
             } else if (input == 3) {
                 // search by customer name
-                Passenger p = _ux.Ux_CreatePassenger();
+                Passenger p = Passenger.Ux_CreatePassenger(kbreader, _reservations);
                 ArrayList<Reservation> customerreservations = Passenger.FindReservationForPassenger(p.getFirstName(),
                         p.getLastName(), _reservations);
                 if (customerreservations.size() == 0) {
@@ -342,14 +343,14 @@ public class ReservationsMain {
                 if (f == null) {
                     // departure airport
                     System.out.print(TextColor.ANSI_BLUE + "\nDeparture Airport: " + TextColor.ANSI_RESET);
-                    Airport departureairport = _ux.Ux_CreateAirport();
+                    Airport departureairport = Airport.Ux_CreateAirport(kbreader, _airports);
                     if (departureairport != null) {
                         // arrival airport
                         System.out.print(TextColor.ANSI_BLUE + "\nArrival Airport" + TextColor.ANSI_RESET);
-                        Airport arrivalairport = _ux.Ux_CreateAirport();
+                        Airport arrivalairport = Airport.Ux_CreateAirport(kbreader, _airports);
                         if (arrivalairport != null) {
                             // create new flight
-                            _ux.Ux_CreateFlight(departureairport, arrivalairport, flightnumber);
+                            Flight.Ux_CreateFlight(kbreader, departureairport, arrivalairport, flightnumber, _flights);
                         } else {
                             System.out.println(TextColor.ANSI_RED + "Please go to Airport menu and Create Airport\n"
                                     + TextColor.ANSI_RESET);
@@ -392,9 +393,10 @@ public class ReservationsMain {
             System.out.print("Please Enter Menu Number: " + TextColor.ANSI_RESET);
             input = ReadMenuInput();
             if (input == 1) {
+                // TODO: Passenger List sorted
                 System.out.println(TextColor.ANSI_BLUE + "NOT IMPLEMENTED" + TextColor.ANSI_RESET);
             } else if (input == 2) {
-                Passenger p = _ux.Ux_CreatePassenger();
+                Passenger p = Passenger.Ux_CreatePassenger(kbreader, _reservations);
                 ArrayList<Reservation> customerreservations = Passenger.FindReservationForPassenger(p.getFirstName(),
                         p.getLastName(), _reservations);
                 if (customerreservations.size() == 0) {
@@ -404,7 +406,7 @@ public class ReservationsMain {
                     System.out.println(reservation + "\n");
                 }
             } else if (input == 3) {
-                Passenger p = _ux.Ux_CreatePassenger();
+                Passenger p = Passenger.Ux_CreatePassenger(kbreader, _reservations);
                 ArrayList<Reservation> customerreservations = Passenger.FindReservationForPassenger(p.getFirstName(),
                         p.getLastName(), _reservations);
                 if (customerreservations.size() == 0) {
@@ -440,30 +442,13 @@ public class ReservationsMain {
                 PrintList(_airports);
             } else if (input == 2) {
                 // search by name
-                System.out.print(TextColor.ANSI_BLUE + "\nEnter Airport Name: " + TextColor.ANSI_RESET);
-                Airport a = Airport.FindAirport(kbreader.nextLine().toUpperCase(), _airports);
-                if (a != null) {
-                    System.out.println(a);
-                } else {
-                    System.out.println(TextColor.ANSI_BLUE + "Airport Does not exist" + TextColor.ANSI_RESET);
-                }
+                Airport.Ux_FindAirport(kbreader, _airports);
             } else if (input == 3) {
                 // Create New Airport
-                _ux.Ux_CreateAirport();
+                Airport.Ux_CreateAirport(kbreader, _airports);
             } else if (input == 4) {
                 // delete airport
-                System.out.print(TextColor.ANSI_BLUE + "\nEnter Airport Name: " + TextColor.ANSI_RESET);
-                Airport a = Airport.FindAirport(kbreader.nextLine().toUpperCase(), _airports);
-                if (a != null) {
-                    System.out
-                            .println(TextColor.ANSI_RED
-                                    + "Deleting below Airport....flights/reservations from this airport are not valid"
-                                    + TextColor.ANSI_RESET);
-                    System.out.println(a);
-                    _airports.remove(a);
-                } else {
-                    System.out.println(TextColor.ANSI_BLUE + "Airport Does not exist" + TextColor.ANSI_RESET);
-                }
+                Airport.Ux_DeleteAirport(kbreader, _airports);
             } else {
                 input = 0;
             }
@@ -492,4 +477,5 @@ public class ReservationsMain {
             System.out.println(object + "\n");
         }
     }
+
 }

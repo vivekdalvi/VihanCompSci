@@ -1,6 +1,7 @@
 package OsborneAirlines;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Reservation implements Comparable<Reservation> {
 
@@ -61,5 +62,24 @@ public class Reservation implements Comparable<Reservation> {
                 .filter(reservation -> reservationnumber.equals(reservation.getReservationNumber())).findAny()
                 .orElse(null);
         return a;
+    }
+
+    protected static Reservation Ux_CreateReservation(Scanner kbreader, ArrayList<Reservation> reservations, Flight f) {
+        int customerinput = 9;
+        ArrayList<Passenger> passengers = new ArrayList<Passenger>();
+        System.out.print(TextColor.ANSI_BLUE + "Please Enter Reservation Number: " + TextColor.ANSI_RESET);
+        Reservation r = new Reservation(kbreader.nextLine(), f, passengers);
+        while (customerinput != 0) {
+            Passenger p = Passenger.Ux_CreatePassenger(kbreader, reservations);
+            r.getPassengerList().add(p);
+            System.out.print(TextColor.ANSI_BLUE + "Do you want to add another customer? [yes: 1 /No: 0]"
+                    + TextColor.ANSI_RESET);
+            if (kbreader.hasNextInt()) {
+                String inputstring = kbreader.nextLine();
+                customerinput = Integer.parseInt(inputstring);
+            }
+        }
+        reservations.add(r);
+        return r;
     }
 }

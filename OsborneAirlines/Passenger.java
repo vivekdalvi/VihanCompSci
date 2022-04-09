@@ -1,6 +1,7 @@
 package OsborneAirlines;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Passenger implements Comparable<Passenger> {
     String _firstname;
@@ -71,5 +72,18 @@ public class Passenger implements Comparable<Passenger> {
         } else {
             return null;
         }
+    }
+
+    protected static Passenger Ux_CreatePassenger(Scanner kbreader, ArrayList<Reservation> reservations) {
+        System.out.println("\nDetails for Passenger ");
+        System.out.print(TextColor.ANSI_BLUE + "Enter First Name: " + TextColor.ANSI_RESET);
+        String firstname = kbreader.nextLine().toUpperCase();
+        System.out.print(TextColor.ANSI_BLUE + "Enter Last Name: " + TextColor.ANSI_RESET);
+        String lastname = kbreader.nextLine().toUpperCase();
+        Passenger p = Passenger.FindPassenger(firstname, lastname, reservations);
+        if (p == null) {
+            p = new Passenger(firstname, lastname);
+        }
+        return p;
     }
 }
