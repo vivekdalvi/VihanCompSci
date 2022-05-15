@@ -19,11 +19,6 @@ public class Passenger implements Comparable<Passenger> {
         return _firstname + " " + _lastname;
     }
 
-    // last name + first name
-    public String getFileName() {
-        return _lastname + " " + _firstname;
-    }
-
     public String getFirstName() {
         return _firstname;
     }

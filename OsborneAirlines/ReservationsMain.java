@@ -115,7 +115,7 @@ public class ReservationsMain {
                     writer.write(reservation.getReservationNumber() + ","
                             + reservation.getFlight().getFlightNumber() + "\n");
                     for (Passenger passenger : reservation.getPassengerList()) {
-                        writer.write(passenger.getFileName() + ",");
+                        writer.write(passenger.getLastName() + " " + passenger.getFirstName() + ",");
                     }
                     writer.write("\n");
                 }
