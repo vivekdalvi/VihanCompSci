@@ -1,3 +1,5 @@
+package General;
+
 public class Student {
     public String getFood() {
         return "Pizza";

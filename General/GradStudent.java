@@ -1,3 +1,5 @@
+package General;
+
 public class GradStudent extends Student {
     public String getFood() {
         return "Taco";

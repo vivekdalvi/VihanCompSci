@@ -4,18 +4,22 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Passenger implements Comparable<Passenger> {
+    // internal fields
     String _firstname;
     String _lastname;
 
+    // only constructor is allowed to set values for private fields
     public Passenger(String firstname, String lastname) {
         _firstname = firstname;
         _lastname = lastname;
     }
 
+    // first name + last name
     public String getName() {
         return _firstname + " " + _lastname;
     }
 
+    // last name + first name
     public String getFileName() {
         return _lastname + " " + _firstname;
     }
