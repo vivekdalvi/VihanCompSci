@@ -73,7 +73,7 @@ public class Flight implements Comparable<Flight> {
         flightstring += "Flight Number: " + TextColor.ANSI_BLUE + _flightnumber + "\n" + TextColor.ANSI_RESET;
         flightstring += "Flight Capacity: " + TextColor.ANSI_BLUE + _capacity + "\n" + TextColor.ANSI_RESET;
         flightstring += "Duration: " + TextColor.ANSI_BLUE + _flightdate.getDuration().toHours() + " hrs "
-                + _flightdate.getDuration().toMinutesPart() + " mins \n" + TextColor.ANSI_RESET;
+                + _flightdate.getDuration().toMinutes() + " mins \n" + TextColor.ANSI_RESET;
         flightstring += "DEPARTURE: " + "\n";
         flightstring += _departureairport.toString() + "\n\t";
         flightstring += GetLocalDepartureDate() + "\n";

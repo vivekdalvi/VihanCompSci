@@ -21,7 +21,7 @@ public class FlightDate {
         _localarrivaltime = LocalDateTime.parse(arrivaltime);
         _localdeparturetime = LocalDateTime.parse(departuretime);
         _d = Duration.between(_localdeparturetime, _localarrivaltime);
-        System.out.println(_d);
+        // System.out.println(_d);
         _utcarrivaltime = _localarrivaltime.atZone(ZoneId.of("UTC"));
         _utcdeparturetime = _localdeparturetime.atZone(ZoneId.of("UTC"));
     }

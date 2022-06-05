@@ -59,7 +59,8 @@ public class TestFlightDate {
       // Pick two FlightDate objects. For each of these
       // get the LocalDateTime object.
       System.out.println("Output for Part E");
-      LocalDateTime fd1DT = fd1.getLocalDateTimeObject(); // your code here, plus a 2nd line
+      // LocalDateTime fd1DT = fd1.getLocalDateTimeObject(); // your code here, plus a
+      // 2nd line
       LocalDateTime fd2DT = fd2.getLocalDateTimeObject();
 
       // Part E continued
