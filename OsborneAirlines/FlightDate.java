@@ -8,13 +8,13 @@ import java.time.ZonedDateTime;
 public class FlightDate {
     // This a zone time in UTC. This is used along with zoneid of airport to
     // calculate local time
-    ZonedDateTime _utcdeparturetime;
-    ZonedDateTime _utcarrivaltime;
+    private ZonedDateTime _utcdeparturetime;
+    private ZonedDateTime _utcarrivaltime;
     // This is localtime in UTC used to write files when users chooses save option
-    LocalDateTime _localdeparturetime;
-    LocalDateTime _localarrivaltime;
+    private LocalDateTime _localdeparturetime;
+    private LocalDateTime _localarrivaltime;
 
-    Duration _d;
+    private Duration _d;
 
     // consutrctor takes time & date in YYYY-MM-DDTHH:MM format
     public FlightDate(String departuretime, String arrivaltime) {

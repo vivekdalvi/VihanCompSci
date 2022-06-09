@@ -47,8 +47,7 @@ public class Flight implements Comparable<Flight> {
         // DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm a");
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd LLL uuuu hh:mm a");
         String departurestring = "";
-        departurestring += "Departing at local time: " + TextColor.ANSI_BLUE + localdeparturetime.format(format)
-                + TextColor.ANSI_RESET;
+        departurestring += "Departing at local time: " + localdeparturetime.format(format);
         return departurestring;
     }
 
@@ -57,8 +56,7 @@ public class Flight implements Comparable<Flight> {
         ZonedDateTime localarrivaltime = _flightdate.getArrivalUTC().withZoneSameInstant(arrivalzone);
         String arrivalstring = "";
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd LLL uuuu hh:mm a");
-        arrivalstring += "Departing at local time: " + TextColor.ANSI_BLUE + localarrivaltime.format(format)
-                + TextColor.ANSI_RESET;
+        arrivalstring += "Arriving at local time: " + localarrivaltime.format(format);
         return arrivalstring;
     }
 
@@ -70,10 +68,10 @@ public class Flight implements Comparable<Flight> {
         String flightstring = "";
 
         // Name, City, State, Timezone
-        flightstring += "Flight Number: " + TextColor.ANSI_BLUE + _flightnumber + "\n" + TextColor.ANSI_RESET;
-        flightstring += "Flight Capacity: " + TextColor.ANSI_BLUE + _capacity + "\n" + TextColor.ANSI_RESET;
-        flightstring += "Duration: " + TextColor.ANSI_BLUE + _flightdate.getDuration().toHours() + " hrs "
-                + _flightdate.getDuration().toMinutes() + " mins \n" + TextColor.ANSI_RESET;
+        flightstring += "Flight Number: " + _flightnumber + "\n";
+        flightstring += "Flight Capacity: " + _capacity + "\n";
+        flightstring += "Duration: " + _flightdate.getDuration().toHours() + " hrs "
+                + _flightdate.getDuration().toMinutes() + " mins \n";
         flightstring += "DEPARTURE: " + "\n";
         flightstring += _departureairport.toString() + "\n\t";
         flightstring += GetLocalDepartureDate() + "\n";
@@ -92,15 +90,12 @@ public class Flight implements Comparable<Flight> {
 
     protected static Flight Ux_CreateFlight(Scanner kbreader, Airport departureairport, Airport arrivalairport,
             String flightnumber, ArrayList<Flight> flights) {
-        System.out.print(TextColor.ANSI_BLUE + "\nPlease Enter Departure Date [YYYY-MM-DDTHH:MM]: "
-                + TextColor.ANSI_RESET);
+        System.out.print("\nPlease Enter Departure Date [YYYY-MM-DDTHH:MM]: ");
         String ad = kbreader.nextLine().toUpperCase();
-        System.out.print(TextColor.ANSI_BLUE + "\nPlease Enter Arrival Date [YYYY-MM-DDTHH:MM]: "
-                + TextColor.ANSI_RESET);
+        System.out.print("\nPlease Enter Arrival Date [YYYY-MM-DDTHH:MM]: ");
         String dd = kbreader.nextLine().toUpperCase();
         FlightDate flightdate = new FlightDate(ad, dd);
-        System.out.print(
-                TextColor.ANSI_BLUE + "\nPlease Enter Flight Capacity: " + TextColor.ANSI_RESET);
+        System.out.print("\nPlease Enter Flight Capacity: ");
         Flight f = new Flight(departureairport, arrivalairport, flightdate, flightnumber,
                 Integer.parseInt(kbreader.nextLine().toUpperCase()));
         flights.add(f);

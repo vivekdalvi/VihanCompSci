@@ -48,10 +48,9 @@ public class Airport implements Comparable<Airport> {
     public String toString() {
         String airportstring = "";
         // Name, City, State, Timezone
-        airportstring += "\tAirport Name: " + TextColor.ANSI_BLUE + _name + TextColor.ANSI_RESET;
-        airportstring += "\tAirport City: " + TextColor.ANSI_BLUE + _city + ", " + _state + TextColor.ANSI_RESET;
-        airportstring += "\t\tAirport TimeZone: " + TextColor.ANSI_BLUE
-                + TimeZone.getTimeZone(_timezoneid).getDisplayName() + TextColor.ANSI_RESET;
+        airportstring += "\tAirport Name: " + _name;
+        airportstring += "\tAirport City: " + _city + ", " + _state;
+        airportstring += "\t\tAirport TimeZone: " + TimeZone.getTimeZone(_timezoneid).getDisplayName();
         return airportstring;
     }
 
@@ -65,47 +64,45 @@ public class Airport implements Comparable<Airport> {
     }
 
     protected static Airport Ux_FindAirport(Scanner kbreader, ArrayList<Airport> airports) {
-        System.out.print(TextColor.ANSI_BLUE + "\nEnter Airport Name: " + TextColor.ANSI_RESET);
+        System.out.print("\nEnter Airport Name: ");
         Airport a = Airport.FindAirport(kbreader.nextLine().toUpperCase(), airports);
         if (a != null) {
             System.out.println(a);
         } else {
-            System.out.println(TextColor.ANSI_BLUE + "Airport Does not exist" + TextColor.ANSI_RESET);
+            System.out.println("Airport Does not exist");
         }
         return a;
     }
 
     protected static Airport Ux_CreateAirport(Scanner kbreader, ArrayList<Airport> airports) {
-        System.out.print(TextColor.ANSI_BLUE + "\nAirport Name: " + TextColor.ANSI_RESET);
+        System.out.print("\nAirport Name: ");
         String name = kbreader.nextLine().toUpperCase();
         Airport airport = Airport.FindAirport(name, airports);
         if (airport == null) {
-            System.out.print(TextColor.ANSI_BLUE + "\nCity: " + TextColor.ANSI_RESET);
+            System.out.print("\nCity: ");
             String city = kbreader.nextLine().toUpperCase();
-            System.out.print(TextColor.ANSI_BLUE + "\nState: " + TextColor.ANSI_RESET);
+            System.out.print("\nState: ");
             String state = kbreader.nextLine().toUpperCase();
-            System.out.print(TextColor.ANSI_BLUE + "\nTimeZone: " + TextColor.ANSI_RESET);
+            System.out.print("\nTimeZone: ");
             String timezoneid = kbreader.nextLine();
             airport = new Airport(name, city, state, timezoneid);
             airports.add(airport);
         } else {
-            System.out.println(TextColor.ANSI_BLUE + "Airport Already Exists" + TextColor.ANSI_RESET);
+            System.out.println("Airport Already Exists");
         }
         return airport;
     }
 
     protected static Airport Ux_DeleteAirport(Scanner kbreader, ArrayList<Airport> airports) {
-        System.out.print(TextColor.ANSI_BLUE + "\nEnter Airport Name: " + TextColor.ANSI_RESET);
+        System.out.print("\nEnter Airport Name: ");
         Airport a = Airport.FindAirport(kbreader.nextLine().toUpperCase(), airports);
         if (a != null) {
             System.out
-                    .println(TextColor.ANSI_RED
-                            + "Deleting below Airport....flights/reservations from this airport are not valid"
-                            + TextColor.ANSI_RESET);
+                    .println("Deleting below Airport....flights/reservations from this airport are not valid");
             System.out.println(a);
             airports.remove(a);
         } else {
-            System.out.println(TextColor.ANSI_BLUE + "Airport Does not exist" + TextColor.ANSI_RESET);
+            System.out.println("Airport Does not exist");
         }
         return a;
     }

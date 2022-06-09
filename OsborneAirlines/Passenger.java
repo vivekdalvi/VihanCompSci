@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 public class Passenger implements Comparable<Passenger> {
     // internal fields
-    String _firstname;
-    String _lastname;
+    private String _firstname;
+    private String _lastname;
 
     // only constructor is allowed to set values for private fields
     public Passenger(String firstname, String lastname) {
@@ -28,7 +28,7 @@ public class Passenger implements Comparable<Passenger> {
     }
 
     public String toString() {
-        return TextColor.ANSI_BLUE + _firstname + " " + _lastname + TextColor.ANSI_RESET;
+        return _firstname + " " + _lastname;
     }
 
     public int compareTo(Passenger passenger) {
@@ -75,9 +75,9 @@ public class Passenger implements Comparable<Passenger> {
 
     protected static Passenger Ux_CreatePassenger(Scanner kbreader, ArrayList<Reservation> reservations) {
         System.out.println("\nDetails for Passenger ");
-        System.out.print(TextColor.ANSI_BLUE + "Enter First Name: " + TextColor.ANSI_RESET);
+        System.out.print("Enter First Name: ");
         String firstname = kbreader.nextLine().toUpperCase();
-        System.out.print(TextColor.ANSI_BLUE + "Enter Last Name: " + TextColor.ANSI_RESET);
+        System.out.print("Enter Last Name: ");
         String lastname = kbreader.nextLine().toUpperCase();
         Passenger p = Passenger.FindPassenger(firstname, lastname, reservations);
         if (p == null) {

@@ -6,8 +6,8 @@ import java.util.Scanner;
 public class Reservation implements Comparable<Reservation> {
 
     private ArrayList<Passenger> _passengerlist = new ArrayList<Passenger>();
-    Flight _flight;
-    String _reservationnumber;
+    private Flight _flight;
+    private String _reservationnumber;
 
     public Reservation(String reservationnumber, Flight flight, String[] passengerlist) {
         _reservationnumber = reservationnumber;
@@ -45,8 +45,7 @@ public class Reservation implements Comparable<Reservation> {
         // reservation number, flightnumber, passenger list
 
         String reservationstring = "";
-        reservationstring += "Reservation Number: " + TextColor.ANSI_BLUE + _reservationnumber + "\n"
-                + TextColor.ANSI_RESET
+        reservationstring += "Reservation Number: " + _reservationnumber + "\n"
                 + _flight.toString() + "\n"
                 + "Passenger List: " + "\n\t"
                 + _passengerlist.toString();
@@ -67,13 +66,12 @@ public class Reservation implements Comparable<Reservation> {
     protected static Reservation Ux_CreateReservation(Scanner kbreader, ArrayList<Reservation> reservations, Flight f) {
         int customerinput = 9;
         ArrayList<Passenger> passengers = new ArrayList<Passenger>();
-        System.out.print(TextColor.ANSI_BLUE + "Please Enter Reservation Number: " + TextColor.ANSI_RESET);
+        System.out.print("Please Enter Reservation Number: ");
         Reservation r = new Reservation(kbreader.nextLine(), f, passengers);
         while (customerinput != 0) {
             Passenger p = Passenger.Ux_CreatePassenger(kbreader, reservations);
             r.getPassengerList().add(p);
-            System.out.print(TextColor.ANSI_BLUE + "Do you want to add another customer? [yes: 1 /No: 0]"
-                    + TextColor.ANSI_RESET);
+            System.out.print("Do you want to add another customer? [yes: 1 /No: 0]");
             if (kbreader.hasNextInt()) {
                 String inputstring = kbreader.nextLine();
                 customerinput = Integer.parseInt(inputstring);
