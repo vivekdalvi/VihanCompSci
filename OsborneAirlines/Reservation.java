@@ -56,7 +56,7 @@ public class Reservation implements Comparable<Reservation> {
         return this.getReservationNumber().compareTo(reservation.getReservationNumber());
     }
 
-    protected static Reservation FindReservation(String reservationnumber, ArrayList<Reservation> reservations) {
+    public static Reservation FindReservation(String reservationnumber, ArrayList<Reservation> reservations) {
         Reservation a = reservations.stream()
                 .filter(reservation -> reservationnumber.equals(reservation.getReservationNumber())).findAny()
                 .orElse(null);

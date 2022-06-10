@@ -82,7 +82,7 @@ public class Flight implements Comparable<Flight> {
         return flightstring;
     }
 
-    protected static Flight FindFlight(String flightnumber, ArrayList<Flight> flights) {
+    public static Flight FindFlight(String flightnumber, ArrayList<Flight> flights) {
         Flight f = flights.stream().filter(flight -> flightnumber.equals(flight.getFlightNumber())).findAny()
                 .orElse(null);
         return f;

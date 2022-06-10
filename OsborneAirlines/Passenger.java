@@ -35,7 +35,7 @@ public class Passenger implements Comparable<Passenger> {
         return this.getName().compareTo(passenger.getName());
     }
 
-    protected static Passenger FindPassenger(String firstname, String lastname, ArrayList<Reservation> reservations) {
+    public static Passenger FindPassenger(String firstname, String lastname, ArrayList<Reservation> reservations) {
         for (Reservation r : reservations) {
             Passenger p = r.getPassengerList().stream()
                     .filter(passenger -> (firstname + " " + lastname).equals(passenger.getName())).findAny()
@@ -47,7 +47,7 @@ public class Passenger implements Comparable<Passenger> {
         return null;
     }
 
-    protected static ArrayList<Reservation> FindReservationForPassenger(String firstname, String lastname,
+    public static ArrayList<Reservation> FindReservationForPassenger(String firstname, String lastname,
             ArrayList<Reservation> reservations) {
         ArrayList<Reservation> reservationsforcustomer = new ArrayList<Reservation>();
         for (Reservation r : reservations) {
@@ -61,7 +61,7 @@ public class Passenger implements Comparable<Passenger> {
         return reservationsforcustomer;
     }
 
-    protected static ArrayList<Passenger> FindPassengersForFlight(String flightnumber,
+    public static ArrayList<Passenger> FindPassengersForFlight(String flightnumber,
             ArrayList<Reservation> reservations) {
         Reservation r = reservations.stream()
                 .filter(reservation -> flightnumber.equals(reservation.getFlight().getFlightNumber())).findAny()

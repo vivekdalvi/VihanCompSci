@@ -58,7 +58,7 @@ public class Airport implements Comparable<Airport> {
         return this.getName().compareTo(airport.getName());
     }
 
-    protected static Airport FindAirport(String airportname, ArrayList<Airport> airports) {
+    public static Airport FindAirport(String airportname, ArrayList<Airport> airports) {
         Airport a = airports.stream().filter(airport -> airportname.equals(airport.getName())).findAny().orElse(null);
         return a;
     }
